@@ -1,0 +1,54 @@
+
+- cold
+
+- being fat
+
+- education system
+
+- hows new is governed
+
+- poverty
+	-> 
+
+- genetically modified food
+
+- to busy life schedule
+
+- being tired
+
+- crime
+
+- war
+
+- how about we make 
+
+- I want to create a way for the spread of accurate information. of IF wrong information then people know about it
+- the true problem in this world is that people do not know about other peoples problems. If we knew about everyones problems and accomplishments then as a collective whole we could fix all of them.
+
+- how can we fix third world crime, abduction, rape, gun violence, 
+	- for abduction they 
+
+- So in all crime there is always a group of people incharge and managing all the crime, How can we stop them?
+	- They do this for a gain, probably money? power?
+	- make this stuff not give them more money and power?
+	- make people aware of it??
+	- make the rich people understand how this is wrong
+	- 
+
+
+There is alot of open data online, It is available on the internet for everyone to access except the problem is, its just inconvenient to find and work with. What we are going to make is a program that lets you use and analayze all that data in a more visual formal. 
+
+- categorize the data according to age, ethinicity, gender, for things like internet time spent, disease, 
+- sell it to marketers
+- you can predict future crime, you can help future 
+- find disease groups, help prevent disease by finding where its popular, 
+- figure out why crime rate is higher in certain people
+- if an age group have high suicide rate figure out why. 
+- monitor new born disease
+
+
+IDEA: take the open data from the government and categorize it, After categorizing it map it with respect to age, gender, wage, location it finds the correlation of the data with that group. If the correlation is to high it then gives you that data and graph for you to analyze. So you can figure out why and help find a solution. 
+For example: Lets say it takes in the crime and it graphs with respect to location, graphs it with respect to age, gender, 
+
+IDEA: 
+
