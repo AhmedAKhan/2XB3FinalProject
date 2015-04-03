@@ -1,0 +1,8 @@
+Saim
+
+- Created initial design of webpage on paper
+- Added sidebar menu
+- Added collapsing functionality to sidebar menu
+- File upload functionality working (requires page to refresh)
+- File upload functionality working (using ajax - no refresh needed)
+- Added progress bar to see file upload progress
