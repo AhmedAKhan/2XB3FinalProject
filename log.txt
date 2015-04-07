@@ -1,0 +1,78 @@
+April 3rd
+
+Saim started making the website. The website currently 
+
+git history
+AhmedAKhan's commits 
+	- learning about the d3 library, made a variety of sample graphs
+	- working on combining the different graphs together useful ways
+	
+* 1f8c954 - it now shows a maluable pie chart, I am now going to try to combine the two pie charts. By maluable i mean a chart that can change at runtime - AhmedAKhan
+* 4c4d744 - shows the interactive pie chart, I called it sequences - AhmedAKhan
+* c29a81a - made a box and whisker graph, made an interactive pie chart, Made a histogram. and working on making an interactive historgram - AhmedAKhan
+* 3c4177d - made the bar graph turn red when you hover over it and made a box and whisker graph which currently has transitions by randomized data - AhmedAKhan
+* d71d267 - added the extra files that were untracked before - AhmedAKhan
+* 3610029 - fixed the bar graph, going to make it interactive - AhmedAKhan
+* 29530f9 - made a bar graph from data in another file - AhmedAKhan
+* 87bb603 - still just testing d3 - AhmedAKhan
+* ce6a22a - finished the first tutorial which consisted of basic commands - AhmedAKhan
+
+Saim Malik's
+* f8338cd - log update - added menu toggle button that changes when menu is toggled - SaimM95 (origin/develop, develop)
+	- started making the website. 
+	- Currently the website has a navigation bar.
+	- The navigation bar can upload files to the server. which will then be used for analyzing
+	- The code for uploading the bar is written in PHP
+	- Made a general layout of the website
+
+Zayan
+	- found more databases for us to analyze
+	- got a data base of the wealth distribution of the world
+		- thinking about how to display that information in a graphical format
+		- came up with a couple different ideas, decided to find a better source online 	
+	- found the percentage of user usage of all the search engines
+		- The website seems to be credible but the data does not seem to be very accurate
+		- found online data that does not allign with the current information	
+	- found a database on the price of weed through the world
+		- Although this is something that we are not going to use
+		- finding this still had value. 
+		- It gave us ideas for how we are going to display our informaiton and may be able to show a different set of information in the same manor	
+
+
+Together
+	- started looking into how the backend of our program will work.
+	- setup a spring environment so we can write the server code in java. 
+		- This will allow us to program in an environment we are comfortable.
+	- Setup a website in spring, Currently it just says hello world and is hosted by pivotal webservices. 
+	- http://ahmedtest.cfapps.io/
+	- going to start combining all our code here
+
+
+
+
+April 1st
+
+- We decided to go with Ahmed's project
+	- program that analyzes and visualizes data sets
+
+- We picked a name for the program. We called it PlotMe
+
+We tested out a variety of libraries to help us draw graphs and we found d3js to be the best one. 
+We decided to make our project using the d3js library written in javascript. 
+
+
+We gave all the members there individual tasks
+
+- Zayan is responsible for getting and parsing data.
+- Saim is responsible for making the UI.
+- Ahmed is responsible for finding ways to analyze the data.
+
+
+We wrote our requirement specification.
+
+
+- Zayan found a few interesting data sets and is finding ways to parse it effectively
+
+- Saim managed to got the design of the user interface on paper.
+
+- Ahmed managed to draw sample graphs from a file that was parsed by zayan. 
