@@ -1,0 +1,19 @@
+.lineText {
+    line-height: 1.4;
+}
+
+label {
+    color: #ffffff;
+}
+
+.progressBar {
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.verticallyCenter {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
