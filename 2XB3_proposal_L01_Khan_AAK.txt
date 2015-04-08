@@ -1,26 +1,0 @@
-Project Title
-
-Abstract
-
-Objectives and scope of the project
-
-Input/Output
-
-Algorithmic challenges of the project
-
-Project TimeTable
-
-Refrences:
-
-
-4 page long
-
-There is alot of open data online, It is available on the internet for everyone to access except the problem is, its just inconvenient to find and work with. What we are going to make is a program that lets you use and analayze all that data in a more visual formal and workable format. - categorize the data according to age, ethinicity, gender, for things like internet time spent, disease, - sell it to marketers- you can predict future crime, you can help the future - find disease groups, help prevent disease by finding where its popular, - figure out why crime rate is higher in certain people- if an age group have high suicide rate figure out why. - monitor new born diseaseIDEA: take the open data from the government and categorize it, After categorizing it map it with respect to age, gender, wage, location.  it finds the correlation of the data with that group. If the correlation is to high it then gives you that data and graph for you to analyze. So you can figure out why and help find a solution. For example: Lets say it takes in the crime and it graphs with respect to location, graphs it with respect to age, gender, - There is alot of open data freely available for use but it is very overwhelming to use. To get something as simple as crime rate can be retrieved from the government websites but takes an unnecessary amount of effort, patience, and manual labor. It is a hassle to even get a simple data set let alone start to analyze it. - We will make a website that will allow you to easily sort and easily manipulate that data. Firstly it will be able to take all the data from all the different government websites and combine it into one simple place for you to access. - The next step will be to sort that data with respect to age, gender, wealth, ethnicity, race, culture, geographic location and so on. If it finds any two variables to be very closely correlated it will show the user the result in the appropriate graph. - You could also manually chose which data sets you want to compare with others- IDEA: 
-
-
-Algorithm complexity slides
-
-Hash map because when u get information from different data sets you get information in different formats to account for example in one place we can get location in longitude and latitude but other places its with an address. So we can convert all of them the same by first hashing all the longitude and latitude values on a hash map and then convert the location to a longitude and latitude value and hash it and also place it with the linked list to categorize it
-
-
-
