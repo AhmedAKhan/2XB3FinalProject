@@ -8,6 +8,7 @@
 *.jar
 *.ear
 .metadata
+.project
 Servers
 RemoteSystemsTempFiles
 
