@@ -21,7 +21,19 @@ var y = d3.scale.sqrt()//d3.scale.sqrt()
 var b = {w: 75, h: 30, s: 3, t: 10 };
 
 // Mapping of step names to colors.
-var colors = {"root":"#ffffff"};
+var colors = {
+    "Survived": "#007E00",
+    "Deceased":"#D30000",
+    "Men": "#0D0893",
+    "Women": "#862D63",
+    "Children": "#226666",
+
+    "FirstClass":"#aa6c39",
+    "SecondClass":"#aa8e39",
+    "ThirdClass":"#AA8739",
+    "Crew":"#91a437",
+    "root":"#ffffff"
+};
 
 // Total size of all segments; we set this later, after loading the data.
 var totalSize = 0;
@@ -47,15 +59,18 @@ var node;
 
 // Use d3.text and d3.csv.parseRows so that we do not need to have a header
 // row, and can receive the csv as an array of arrays.
-d3.json("input.json", function(error, data){
-    var json = buildHierarchy2(data);
+//d3.text("visit-sequences.csv", function(text) {
+d3.text("Titanic.csv", function(text){
+    var csv = d3.csv.parseRows(text);
+    var json = buildHierarchy(csv);
     createVisualization(json);
 });
 
 // Main function to draw and set up the visualization, once we have the data.
 function createVisualization(json) {
     node = json;
-
+    console.log("node");
+    console.log(node);
     // Basic setup of page elements.
     initializeBreadcrumbTrail();
     drawLegend();
@@ -74,7 +89,16 @@ function createVisualization(json) {
             return (d.dx > 0.005); // 0.005 radians = 0.29 degrees
         });
 
+    console.log("nodes");
+    console.log(nodes);
     var root = json;
+    console.log("2 printing root properties name: " + root.name + " x: "+root.x + " y: " + root.y + " depth: " + root.depth);
+
+    //console.log("printing nodes");
+    //console.log(nodes);
+    //console.log("printing root node");
+    //console.log(nodes[0]);
+    //console.log("printing paths");
 
     var path = vis.data([json]).selectAll("path")
         .data(nodes)
@@ -88,6 +112,13 @@ function createVisualization(json) {
         .on("mouseover", mouseover)
         .on("click", click)             //just added
         .each(stash);                   //just added
+
+    console.log(path);
+    console.log("printing out path[0][0]");
+    console.log(path[0][0]);
+
+    console.log("printing out path[0][1]");
+    console.log(path[0][1]);
 
     d3.select("#container").on("mouseleave", mouseleave);
 
@@ -123,6 +154,21 @@ function arcTweenZoom(d) {
             : function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
     };
 }
+/*function arcTweenZoom(clickedNode){
+    //return : (d,i)->(t)->(svg path)
+
+    return function(d,i){
+        if(arrayContains(getAncestors(d), clickedNode)) return function(t) { return arc(d); };
+        else return function(t){ return d3.svg.arc(); };
+    };
+
+    function arrayContains(arr, obj) {
+        for (var i = 0; i < arr.length; i++)
+            if (arr[i] === obj) return true;
+        return false;
+    }
+};*/
+
 
 // Fade all but the current sequence, and show it in the breadcrumb trail.
 function mouseover(d) {
@@ -156,6 +202,7 @@ function mouseover(d) {
 
 // Restore everything to full opacity when moving off the visualization.
 function mouseleave(d) {
+
     // Hide the breadcrumb trail
     d3.select("#trail")
         .style("visibility", "");
@@ -299,22 +346,49 @@ function toggleLegend() {
     }
 }
 
-function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-function buildHierarchy2(json){
-    var data = json.data;
-    //console.log(json);
+// Take a 2-column CSV and transform it into a hierarchical structure suitable
+// for a partition layout. The first column is a sequence of step names, from
+// root to leaf, separated by hyphens. The second column is a count of how
+// often that sequence occurred.
+function buildHierarchy(csv) {
     var root = {"name": "root", "children": []};
-    for(var i = 0; i < data.length; i++){
-        root.children.push({"name":data[i].name, "size":data[i].value});
-        colors[data[i].name] = getRandomColor();
+    for (var i = 0; i < csv.length; i++) {
+        var sequence = csv[i][0];
+        var size = +csv[i][1];
+        if (isNaN(size)) { // e.g. if this is a header row
+            continue;
+        }
+        var parts = sequence.split("-");
+        var currentNode = root;
+        for (var j = 0; j < parts.length; j++) {
+            var children = currentNode["children"];
+            var nodeName = parts[j];
+            var childNode;
+
+            if (j + 1 < parts.length) {
+                // Not yet at the end of the sequence; move down the tree.
+                var foundChild = false;
+                for (var k = 0; k < children.length; k++) {
+                    if (children[k]["name"] == nodeName) {
+                        childNode = children[k];
+                        foundChild = true;
+                        break;
+                    }
+                }
+                // If we don't already have a child node for this branch, create it.
+                if (!foundChild) {
+                    childNode = {"name": nodeName, "children": []};
+                    children.push(childNode);
+                }
+                currentNode = childNode;
+            } else {
+                // Reached the end of the sequence; create a leaf node.
+                childNode = {"name": nodeName, "size": size};
+                children.push(childNode);
+            }
+        }
     }
+
     //define the properties of the root
     root.x = 0;
     root.dx = Math.PI*2;
@@ -323,5 +397,6 @@ function buildHierarchy2(json){
     root.x0 = 0;
     root.color = "#ffffff";
 
+    console.log("printing root properties name: " + root.name + " x: "+root.x + " y: " + root.y + " depth: " + root.depth);
     return root;
-}
+};

@@ -1,0 +1,8 @@
+{
+  "name":"Box and Whisker",
+  "xAxisName":"x axis",
+  "yAxisName":"y axis",
+
+  "data": [1,2,3,4,5,3,4,5,2,3,4,2,2]
+
+}

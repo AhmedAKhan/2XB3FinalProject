@@ -23,6 +23,7 @@
 <body>
 
 <section>
+<!--<div class="chart"></div>-->
     <svg class="chart"></svg>
 </section>
 
@@ -33,6 +34,7 @@
 <!--</section>-->
 
 <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+
 <script>
 
     //define all the variables
@@ -65,10 +67,10 @@
         .append("g")
             .attr("transform", "translate("+margin.left+","+margin.top+")");
 
-    d3.json("input.json", function(error, data){
-//        gives the x and y domain.
-        x.domain(data.data.map(function(data){ return data.name; }));
-        y.domain([0, d3.max(data.data, function(data) { return data.value; })]);
+    d3.tsv("data.tsv", type, function(error, data) {
+        //gives the x and y domain.
+        x.domain(data.map(function (d){ return d.name; }));
+        y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
         //add the x axis
         chart.append("g")
@@ -87,13 +89,9 @@
                 .style("text-anchor", "end")
                 .text("Frequency");
 
-        console.log(data);
-        console.log("width: " + width);
-        console.log("x.rangeBand(): " + x.rangeBand());
-
         //creates the individual bars
         chart.selectAll(".bar")
-                .data(data.data)
+                .data(data)
                 .enter().append("rect")
                 .attr("class", "bar")
                 .attr("x", function(d){ return x(d.name) })

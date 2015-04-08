@@ -62,9 +62,6 @@ d3.json("flare.json", function(error, root) {
 
     function click(d) {
         node = d;
-        console.log("clicked node");
-        console.log(d);
-
         path.transition()
             .duration(1000)
             .attrTween("d", arcTweenZoom(d));
