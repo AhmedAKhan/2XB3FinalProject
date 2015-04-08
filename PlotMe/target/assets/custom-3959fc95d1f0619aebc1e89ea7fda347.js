@@ -1,0 +1,1 @@
+$(document).ready(function(){$("#menu-toggle").click(function(e){e.preventDefault();$("#wrapper").toggleClass("toggled");var t=$(this).text().trim();if(t==="<"){$(this).text(">")}else if(t===">"){$(this).text("<")}})})
