@@ -1,5 +1,8 @@
 package Files;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 /**
@@ -18,7 +21,6 @@ public class Analayzer {
      * @param category = is the category of which column to chose from
      */
 
-
     /*
     Steps for this part of the software
         - get the min, median, and all the quartile information
@@ -27,69 +29,115 @@ public class Analayzer {
         - Choose the graph with the highest IQR
 
      */
-    public Analayzer(String dataset, String category){
+    public Analayzer(){
 
+    }
+
+    public QuartileInformation analyzeGraph(String dataset, String category){
         //get all the min, max, and all the quartile information
-        QuartileInformation[]  graphInfo = getQuartileInformationOfData();
+        QuartileInformation[]  graphInfo = getQuartileInformationOfData(dataset, category);
+        QuartileInformation oddestGraph = getOddestGraph(graphInfo);
 
-        int sums[] = new int[graphInfo.length];
+        return oddestGraph;
+    }
+    public QuartileInformation getOddestGraph(QuartileInformation[] graphInfo){
+        int currentHighestValue = Integer.MIN_VALUE;
+        QuartileInformation oddestGraph = null;
 
         //sort it between all the graphs
-        Integer[][] quartilInformation = new Integer[5][graphInfo.length];
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < graphInfo.length; j++){
-                quartilInformation[i][j] = graphInfo[j].quartileInformation[i];
+        Integer[] quartilInformation = new Integer[graphInfo.length];
+        for(int quartileCounter = 0; quartileCounter < 5; quartileCounter++){
+            for(int index = 0; index < graphInfo.length; index++){
+                quartilInformation[index] = graphInfo[index].quartileInformation[quartileCounter];
             }
             //sort all the data
-            OptimalSort.sort(quartilInformation[i]);
+            OptimalSort.sort(quartilInformation);
 
-            //just makes the data easier to work with
-            Integer currentArray[] = quartilInformation[i];
+            //gets the range of the quartile
+            int quartileRange = getQuartileRange(quartilInformation);
 
-            //gets the quartile information
-            int q1 = quartilInformation[i][currentArray.length/4];
-            int q3 = quartilInformation[i][currentArray.length/4*3];
-            int quartileRange = q3-q1;
+            //adds the IQR value to the quartileInformation function
+            for(int index = 0; index < graphInfo.length; index++ ){
+                graphInfo[index].value += graphInfo[index].quartileInformation[quartileCounter]/quartileRange;
 
-            //now divide all the data by this number and add that to the sums
-            for(int j = 0; j < quartilInformation.length; j++){
-                //
-            }
+                //the second case should never be executed to be true in practice but i kept it here to ensure the system is robust
+                if(graphInfo[index].value > currentHighestValue || oddestGraph == null){
+                    currentHighestValue = graphInfo[index].value;
+                    oddestGraph = graphInfo[index];
+                }//end if statement
+            }// for loop
+        }//end for loop
 
-
-        }
-
-        //now that its sorted we can find the min, max, and the quartile information
-
-
-        //find the IQR values added together
-        for(){
-
-        }
-
-        //chose the graph with the IQR
-
+        return oddestGraph;
     }
-    private QuartileInformation[] getQuartileInformationOfData(){
+
+    public int getQuartileRange(Integer[] data){
+
+        //gets the quartile information
+        int min = data[0];
+        int q1 = data[data.length/4];
+        int q2 = data[data.length/2];
+        int q3 = data[data.length/4*3];
+        int quartileRange = q3-q1;
+        int max = data[data.length-1];
+
+        return quartileRange;//new KeyValuePair[]{new KeyValuePair(min, parent), new KeyValuePair(q1, parent), new KeyValuePair(q2, parent), new KeyValuePair(q3, parent), new KeyValuePair(max, parent)};
+    }
+
+    public class ChartInformation{
+        public ArrayList independentVariable;
+        public ArrayList dependentVariable;
+        public ChartInformation(ArrayList ind, ArrayList dep){independentVariable = ind; dependentVariable = dep;};
+    }
+
+
+    /**
+     * @parem it will have some input
+     *
+     *
+     * @return This will return an array of quartile information
+     */
+    private QuartileInformation[] getQuartileInformationOfData(String dataset, String category){
+
+
         return null;
     }
-/*
+
     private class KeyValuePair implements Comparable<KeyValuePair> {
         private int value;
-        private QuartileInformation key;
+        private String key;
 
+        public KeyValuePair(int value, String key){ this.value = value; this.key = key; }
         @Override public int compareTo(KeyValuePair o) {
             if(value > o.value) return 1;
             if(value == o.value) return 0;
             return -1;
         }
-    }*/
+    }
+
+
+    /**
+     * quartileInformation = is an array of 5 elements that represents the min, q1, q2, q3, max of the data set
+     * name = this is the name of the graph, the heading to show what the data means, Programically it is used to tell the objects apart
+     * value = this value represents how different this graph is from the rest
+     */
     private class QuartileInformation{
-        private String name;
-        private int[] quartileInformation;
+        private String name;        //this is the name of the graph, the heading to show what the data means, Programically it is used to tell the objects apart
+        private int[] quartileInformation;  ///stores all the quartile information
+        private int value;          //this value represents how different this graph is from the rest
 
         public QuartileInformation(int min, int q1, int q2, int q3, int max){ this(new int[]{min, q1, q2, q3, max}); }
         public QuartileInformation(int[] quartileInformation){ this.quartileInformation = quartileInformation; }
+    }
+
+    @Test public void test(){
+        Analayzer analyzer= new Analayzer();
+
+        QuartileInformation[] arr = new QuartileInformation[5];
+        for(int i= 0; i < arr.length; i++){
+//            arr[i] =
+        }
+        analyzer.getOddestGraph(arr);
     }
 
     public static void main(String[] args){
