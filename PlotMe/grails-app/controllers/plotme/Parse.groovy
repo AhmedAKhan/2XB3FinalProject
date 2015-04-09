@@ -16,7 +16,7 @@ class Parse {
 			String []a = line.split(",");
 
 			myList.add(a);
-			System.out.println("row: " + row);
+//			System.out.println("row: " + row);
 			row++;
 		}
 		return myList;

@@ -2,11 +2,9 @@ package plotme
 
 class UploadedFile {
 
-	String filePath = "";
+	String filePath
+	String fileName
 	
-	UploadedFile (String file) {
-		this.filePath = file;
-	}
 	
 //    static constraints = {
 //    }

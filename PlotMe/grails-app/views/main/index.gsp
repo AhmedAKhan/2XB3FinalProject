@@ -28,9 +28,6 @@
             </li>
             <li>
                 <div style="margin-left: 20px">
-<%--                    <table>--%>
-<%--                        <tr>--%>
-<%--                            <td>--%>
                     <p class="menuTitle">Upload the data file</p>
 
 					<div style="padding-bottom: 10px">
@@ -41,86 +38,51 @@
 					</div>
 
 
-                                
-<%--                                <div id="uploadLabel"></div>--%>
-                                
-<%--                                <div class="form-group lineText">--%>
-<%--                                    <input type="file" id="inputFile" name="inputFile" style="display: inline; color: white">--%>
-<%--                                    <!--<progress id="prog" value="0" min="0" max="100" style="margin-left: 20px; margin-top: 10px"></progress>-->--%>
-<%--                                    <div class="progressBar progress">--%>
-<%--                                        <div id="prog" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"--%>
-<%--                                             aria-valuemin="0" aria-valuemax="100" style="width: 0%">--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                    --%>
-<%--                                   		<label id="uploadLabel" style="display:none"></label>--%>
-<%--                                    	<input name="upload" id="upload" type="button" class="btn btn-warning" value="Upload">--%>
-<%--                                    --%>
-<%--                                </div>--%>
-<%--                                <div><input name="upload" id="upload" type="button" class="btn btn-warning" value="Upload"></div>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td>--%>
-
-<div>
-	<g:uploadForm action="drawGraph" method="post">
-
-		<p class="menuTitle">Pick a graph</p>
+					<div>
+						<g:uploadForm action="drawGraph" method="post">
+					
+							<p class="menuTitle">Pick a graph</p>
+												
+					        <div class="radio lineText">
+					            <label>
+					                <input type="radio" name="graphOptions" id="optionsRadios1" value="bar" checked>
+					                Bar Graph
+					            </label>
+					        </div>
+					        <div class="radio lineText">
+					            <label>
+					                <input type="radio" name="graphOptions" id="optionsRadios2" value="whiskers">
+					                Box & Whiskers Graph
+					            </label>
+					        </div>
+					        <div class="radio lineText">
+					            <label>
+					                <input type="radio" name="graphOptions" id="optionsRadios2" value="pie">
+					                Pie Chart
+					            </label>
+					        </div>
+					                            
+					                                
+					                                
+							<label for="independent">Independent Column:</label><br/>
+							<input type="text" name="independent" value="0"><br/>
+							<label for="dependent">Dependent Columns (comma separated):</label><br/>
+							<input type="text" name="dependent" value="6">
+							<br/>
+						
+							<div class="checkbox lineText">
+						   		<label style="padding-left: 0px">
+						        	<input name="sorted" type="checkbox"> Sorted
+						    	</label>
+							</div>
 							
-        <div class="radio lineText">
-            <label>
-                <input type="radio" name="graphOptions" id="optionsRadios1" value="line" checked>
-                Line Graph
-            </label>
-        </div>
-        <div class="radio lineText">
-            <label>
-                <input type="radio" name="graphOptions" id="optionsRadios2" value="bar">
-                Bar Graph
-            </label>
-        </div>
-        <div class="radio lineText">
-            <label>
-                <input type="radio" name="graphOptions" id="optionsRadios2" value="pie">
-                Pie Chart
-            </label>
-        </div>
+							<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success">
+						
+						</g:uploadForm>
+					</div>
+                    
+                    <div id="activeFile">File Active: ${activeFile}</div>
                             
-                                
-                                
-		<label for="independent">Independent Column:</label><br/>
-		<input type="text" name="independent"><br/>
-		<label for="dependent">Dependent Columns (comma separated):</label><br/>
-		<input type="text" name="dependent">
-		<br/>
-	
-		<div class="checkbox lineText">
-	   		<label style="padding-left: 0px">
-	        	<input name="sorted" type="checkbox"> Sorted
-	    	</label>
-		</div>
-		
-		<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success">
-	
-	</g:uploadForm>
-</div>
-                            
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td>--%>
-<%--                                <div class="checkbox lineText">--%>
-<%--                                    <label style="padding-left: 0px">--%>
-<%--                                        <input type="checkbox"> Sorted--%>
-<%--                                    </label>--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td><input name="submit" id="submit" type="button" class="btn btn-success" value="Submit"></td>--%>
-<%--                        </tr>--%>
-<%--                    </table>--%>
                 </div>
             </li>
         </ul>
@@ -174,6 +136,18 @@
 <script src="${resource(dir: 'assets', file: 'bootstrap.min.js')}"></script>
 
 <script src="${resource(dir: 'assets', file: 'custom.js')}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var activeFile = $('#activeFile');
+		var fileStatus = activeFile.text();
+
+		var red = "File Active: No file activated"
+
+		if (fileStatus === red) activeFile.css({'color':'red','text-indent':'0px'});
+		else activeFile.css({'color':'green','text-indent':'0px'});
+	});
+</script>
 
 <%--<script src="${resource(dir: 'assets', file: 'uploadFile.js')}"></script>--%>
 
