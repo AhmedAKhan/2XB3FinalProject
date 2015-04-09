@@ -40,14 +40,13 @@ public class Insertion
 
             //it creates a loop that runs from the end of the sorted array to the element where we need to place the number
             int j;
-            for(j = i-1; j > min && needsExchange(currentElement, a[j], increasing) ; j--){
+            for(j = i-1; j >= min && needsExchange(currentElement, a[j], increasing) ; ){
                 a[j+1] = a[j];
+                j--;
             }
 
             //adds the number that we needed to insert in its slot
-            a[j] = currentElement;
-//            System.out.print("i: " + i + " j: " + j + " arr: ");
-//            show(a);
+            a[j+1] = currentElement;
         }
     }
 

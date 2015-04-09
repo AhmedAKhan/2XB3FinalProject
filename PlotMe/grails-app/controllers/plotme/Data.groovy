@@ -36,9 +36,9 @@ class Data {
 		Point[] arrPoint = new Point[data.size()]
 		ArrayList<Point> sortedData = new ArrayList<>()
 		
-//		for (int i = 0; i < arrPoint.length; i++) {
-//			arrPoint[i] = data.get(i)
-//		}
+		for (int i = 0; i < arrPoint.length; i++) {
+			arrPoint[i] = data.get(i)
+		}
 		
 //		for (int q = 0; q < arrPoint.length; q++) {
 //			for (int p = 0; p < arrPoint.length; p++) {
@@ -46,7 +46,7 @@ class Data {
 //			}
 //		}
 		System.out.println("started: " + arrPoint);
-		OptimalSort.sort(arrPoint);
+		OptimalSort.sort(arrPoint, OptimalSort.DECREASING);
 		System.out.println("ended: " + arrPoint);
 		
 		for (int i = 0; i < arrPoint.length; i++) {

@@ -50,6 +50,11 @@ public class OptimalSortTest {
 
     @Test public void testLargeDataSets() {
 
+        Double[] test = new Double[]{0.0 , 0.0 , 0.0 , 0.0 , 0.0, 40.9, 0.0, 19.6, 27.4, 12.1};
+        OptimalSort.printArray(test);
+        OptimalSort.sort(test, OptimalSort.DECREASING);
+        OptimalSort.printArray(test);
+
 //        OptimalSort op = new OptimalSort();
 //        if(op.setUp(true).length != 500) fail("the setup function is not returning a size of 500 when given true, it is returning a size of : " + op.setUp(true).length);
 //        if(op.setUp(false).length != 5000) fail("The setup function is not returning an array of size 5000 when given the input false, it is given a size of: " + op.setUp(false).length);
@@ -86,5 +91,6 @@ public class OptimalSortTest {
         OptimalSort.sort(array5000);
 
         assertTrue(OptimalSort.sorted(array5000));
+
     }//end of the test sort method
 }//end class method
