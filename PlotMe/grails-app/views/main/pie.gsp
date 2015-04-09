@@ -12,9 +12,6 @@
 <div>pie chart</div>
 
 <div id="jsonObject" data-name="${objJSON}"></div>
-<div id="abc" data-name="${objJSON}"></div>
-
-%{--<div>${objJSON}</div>--}%
 
 <div id="main">
     <div id="sequence"></div>
@@ -26,11 +23,12 @@
     </div>
 </div>
 
+<div id="sidebar">
+    <input type="checkbox" id="togglelegend" checked> Legend<br/>
+    <div id="legend" style="visibility: visible;"></div>
+</div>
 
-%{--<form>--}%
-    %{--<label><input type="radio" name="mode" value="size"> Size</label>--}%
-    %{--<label><input type="radio" name="mode" value="count" checked> Count</label>--}%
-%{--</form>--}%
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="${resource(dir: 'assets', file: 'jquery.min.js')}"></script>
 
