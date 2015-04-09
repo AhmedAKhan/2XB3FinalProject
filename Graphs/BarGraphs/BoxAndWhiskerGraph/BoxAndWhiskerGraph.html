@@ -45,8 +45,10 @@
         ...]
         All the different data sets will be displayed as different box and whisker graphs
      */
-    d3.json("input.json", function(error, data){
-        data = data.data;
+//    d3.json("input.json", function(error, data){
+
+//         data = data.data;
+        var data = [[ 4.37, 0.08, 0.71, 1.26, 0.32, 57.46, 0.04, 13.89, 18.43, 0 ]];
         findMinAndMax(data);
         chart.domain([min, max]);
 
@@ -60,7 +62,7 @@
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                 .call(chart);
 
-    });
+//    });
 
     //this function just simply gets the minimum and maximum value
     function findMinAndMax(data){
