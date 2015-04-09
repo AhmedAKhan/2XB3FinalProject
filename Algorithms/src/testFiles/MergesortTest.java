@@ -48,6 +48,7 @@ public class MergesortTest {
 
     @Test
     public void testSort() {
+        // ------------- started testing sorted ----------------------
         //checking if the sorted method works
         Integer test1[] = {1,2,3,4,5};
         assertTrue(MergeSort.sorted(test1));//the array is sorted, it should return true
@@ -58,10 +59,16 @@ public class MergesortTest {
         test1 = new Integer[]{1,2,3,3,5,6,7,8};
         assertTrue(MergeSort.sorted(test1));//the array is sorted, it should return true
 
-
         test1 = new Integer[]{1,2,3,3,5,2,7,8};
         assertTrue(!MergeSort.sorted(test1));//the array is not sorted, it should return false
+        // ------------- started testing sorted ----------------------
 
+        // ------------- started testing sort ----------------------
+
+        assertTrue(!MergeSort.sorted(test1, MergeSort.DECREASING));
+        test1 = new Integer[]{1, 5, 7, 5, 3, 2, 2};
+        MergeSort.sort(test1, MergeSort.DECREASING);
+        assertTrue(MergeSort.sorted(test1, MergeSort.DECREASING));
         //now that we know that the sorted function works we can use that to test the arrays
 
         assertTrue(!MergeSort.sorted(array500));//originally the array is not sorted so the answer should be false

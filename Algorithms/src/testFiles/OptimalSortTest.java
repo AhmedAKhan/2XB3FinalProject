@@ -70,6 +70,11 @@ public class OptimalSortTest {
         test1 = new Integer[]{1, 2, 3, 3, 5, 2, 7, 8};
         assertTrue(!OptimalSort.sorted(test1));//the array is not sorted, it should return false
 
+        test1 = new Integer[]{4,5,3,2,6,3,1,5,01,29,43,6,52};
+        assertTrue(!OptimalSort.sorted(test1, OptimalSort.DECREASING));
+        OptimalSort.sort(test1, OptimalSort.DECREASING);
+        assertTrue(OptimalSort.sorted(test1, OptimalSort.DECREASING));
+
         //now that we know that the sorted function works we can use that to test the arrays
 
         assertTrue(!OptimalSort.sorted(array500));//originally the array is not sorted so the answer should be false

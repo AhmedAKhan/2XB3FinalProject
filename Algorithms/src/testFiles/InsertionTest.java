@@ -51,33 +51,33 @@ public class InsertionTest {
 // ----------------------- checking the sorted function ----------------------
 		//checking if the sorted method works
 		Integer test1[] = {1,2,3,4,5};
-		assertTrue(Insertion.sorted(test1, false));//the array is sorted, it should return true
+		assertTrue(Insertion.sorted(test1, true));//the array is sorted, it should return true
 		
 		test1 = new Integer[]{3,2,1,5,7,5,9,7,5,2};
-		assertTrue(!Insertion.sorted(test1, false)); // array is not sorted, the answer should be false
+		assertTrue(!Insertion.sorted(test1, true)); // array is not sorted, the answer should be false
 		
 		test1 = new Integer[]{1,2,3,3,5,6,7,8};
-		assertTrue(Insertion.sorted(test1, false));//the array is sorted, it should return true
+		assertTrue(Insertion.sorted(test1, true));//the array is sorted, it should return true
 
 		test1 = new Integer[]{1,2,3,3,5,2,7,8};
-		assertTrue(!Insertion.sorted(test1, false));//the array is not sorted, it should return false
+		assertTrue(!Insertion.sorted(test1, true));//the array is not sorted, it should return false
 
         test1 = new Integer[]{9,8,7,6,5,5};
-        assertTrue(Insertion.sorted(test1, true));
+        assertTrue(Insertion.sorted(test1, false));
 
         test1 = new Integer[]{9,8,10,6,5,5};
         assertTrue(!Insertion.sorted(test1, true));
 // ----------------- done checking the sorted function ----------------
 
 // ----------------- start checking the needs exchange function ----------------
-        assertTrue(Insertion.needsExchange(1,0, true));
-        assertTrue(Insertion.needsExchange(9,-2, true));
-
-        assertTrue(!Insertion.needsExchange(0,0, true));
+        assertTrue(Insertion.needsExchange(1,0, false));
+        assertTrue(Insertion.needsExchange(9,-2, false));
 
         assertTrue(!Insertion.needsExchange(0,0, false));
-        assertTrue(!Insertion.needsExchange(9,0, false));
-        assertTrue(Insertion.needsExchange(0,1, false));
+
+        assertTrue(!Insertion.needsExchange(0,0, true));
+        assertTrue(!Insertion.needsExchange(9,0, true));
+        assertTrue(Insertion.needsExchange(0,1, true));
 // ----------------- end checking the needs exchange function ----------------
 
         Integer[] a = new Integer[]{9,8,7,6,5,5};
