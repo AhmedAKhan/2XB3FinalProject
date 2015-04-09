@@ -70,7 +70,7 @@
     findMinAndMax(data);
     chart.domain([min, max]);
 
-    var svg = d3.select("body").selectAll("svg")
+    var svg = d3.select("#chart").selectAll("svg")
             .data(data)
             .enter().append("svg")
             .attr("class", "box")
