@@ -157,9 +157,7 @@ class MainController {
 	}
 
 	// Closes the input file
-	public static void closeInputFile() {
-		input.close();
-	}
+	public static void closeInputFile() { input.close(); }
 
 	// Creates/opens the output file
 	public static void openOutFile(String name) {
@@ -171,9 +169,7 @@ class MainController {
 	}
 
 	// Closes the output file
-	public static void closeOutputFile() {
-		output.close();
-	}
+	public static void closeOutputFile() { output.close();  }
 	
 	public static void main(String[] args) {
 //		openInputFile(pathString)

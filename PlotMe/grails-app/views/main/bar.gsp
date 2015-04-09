@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
 	<style>
         .bar {          fill: steelblue;        }
         .bar:hover{     fill:brown;             }
@@ -16,7 +15,6 @@
             shape-rendering: crispEdges;
         }
     </style>
-
 </head>
 
 <body>
@@ -24,7 +22,6 @@
 <div id="abc" data-name="${objJSON}"></div>
 
 <section>
-<!--<div class="chart"></div>-->
     <svg class="chart"></svg>
 </section>
 
@@ -79,9 +76,6 @@
         console.log(data);
         data = data.name;
 //        gives the x and y domain.
-//        console.log(d3.min(data.data, function(data){return data.value;}));
-//        x.domain([d3.min(data.data, function(data){return data.name;}), d3.max(data.data, function(data){return data.name; })]);
-//        console.log(d3.min(data.data, function(data){return data.value;}));
         x.domain(data.data.map(function(data){ return data.name; }));
         y.domain([0, d3.max(data.data, function(data) { return data.value; })]);
         //add the x axis
@@ -111,7 +105,6 @@
                 .attr("y", function(d){ return y(d.value) })
                 .attr("height", function(d){ return height - y(d.value) })
                 .attr("width", 100);//x.rangeBand());
-    //});
     //converts a given string to a value
     function type(d) {
         d.value = +d.value; // coerce to number
