@@ -14,19 +14,23 @@ public class Insertion
           System.out.print(a[i] + " ");
        System.out.println();
     }
-    
-    public static <T extends Comparable<T>> boolean sorted(T[] a)
+
+    public static <T extends Comparable<T>> boolean sorted(T[] a){ return sorted(a, true);}
+    public static <T extends Comparable<T>> boolean sorted(T[] a, boolean decreasing)
     {  	// Test whether the array entries are in order.
     	//this loop runs through the entire array
     	for(int i = 0; i < a.length-1; i++){
     		//checks if the next element is smaller then itself, if it is it returns false
-    		if(a[i].compareTo( a[i+1]) > 0) return false;
+            if(decreasing){ if(a[i].compareTo(a[i+1]) < 0) return false; }
+            else if(a[i].compareTo( a[i+1]) > 0) return false;
     	}
     	return true;
     }
-	
-	public static <T extends Comparable<T>> void sort(T[] a) { sort(a, 0, a.length-1);}
-    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){
+
+	public static <T extends Comparable<T>> void sort(T[] a) { sort(a, true);}
+    public static <T extends Comparable<T>> void sort(T[] a, boolean decrease){ sort(a, 0, a.length-1, decrease); }
+    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, true); }
+    public static <T extends Comparable<T>> void sort(T[] a, int min, int max, boolean decreasing){
         // Sort a[] into increasing order.
         for (int i = min+1; i <= max; i++)
         {   // Insert a[i] among a[i-1], a[i-2], a[i-3]... ..
@@ -34,15 +38,32 @@ public class Insertion
             //it stores the current number to insert in the variable currentElement
             T currentElement = a[i];
 
-            //it creates a loop that runs from the end of the sorted array to the elment where we need to place the number
+            //it creates a loop that runs from the end of the sorted array to the element where we need to place the number
             int j;
-            for(j = i-1; j > min && currentElement.compareTo(a[j]) < 0; j--){
+            for(j = i-1; j > min && needsExchange(currentElement, a[j], decreasing) ; j--){
                 a[j+1] = a[j];
             }
 
             //adds the number that we needed to insert in its slot
             a[j] = currentElement;
+//            System.out.print("i: " + i + " j: " + j + " arr: ");
+//            show(a);
         }
+    }
+
+    public static <T extends Comparable<T>> boolean needsExchange(T currentElement, T secondElement, boolean decreasing){
+        if(decreasing) return currentElement.compareTo(secondElement) > 0;
+        else return currentElement.compareTo(secondElement) < 0;
+    }
+
+    public static void main(String[] args){
+        Integer[] a = new Integer[]{9,8,7,6,5,5};
+        show(a);
+        sort(a);
+        show(a);
+//        System.out.println("is a sorted: " + sorted(a, true));
+
+
     }
 
 }

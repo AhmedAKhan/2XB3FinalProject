@@ -49,7 +49,7 @@ public class OptimalSort
                 totalTime = totalTime + currentTime;
             }
             insertionSortTime = totalTime/numberOfTries;
-            System.out.println("mergeSort: " + mergeSortTime + " insertionSortTime: " + insertionSortTime + " : maxInsertionSort: " + sizeOfArray);
+            //System.out.println("mergeSort: " + mergeSortTime + " insertionSortTime: " + insertionSortTime + " : maxInsertionSort: " + sizeOfArray);
             sizeOfArray++;
         }//end while
 
@@ -108,17 +108,13 @@ public class OptimalSort
             Insertion.sort(comparables, min, max);
             return;
         }
-
         //do the dividing
         int middlePoint = (max+min)/2;
         sort(comparables, min, middlePoint);
         sort(comparables, middlePoint+1, max);
-
 //        if(!sorted(comparables, min, middlePoint)) throw new Exception("the values from min: " + min + " middlePoint: " + middlePoint + " are not sorted yet");
 //        if(!sorted(comparables, middlePoint+1, max)) throw new Exception("the values from min: " + (middlePoint+1) + " middlePoint: " + max + " are not sorted yet");
-
-        //combine
-        merge(comparables, min, middlePoint, max);
+        merge(comparables, min, middlePoint, max);//combine
     }
     private static boolean less(Comparable v, Comparable w)
     {  return v.compareTo(w) < 0;  }

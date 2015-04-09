@@ -13,10 +13,8 @@ class MainController {
 	}
 	
 	def titanic() {
-		Person p = new Person(firstName: "Saim", lastName: "Malik")
-		
-		def json = p as JSON
-		
+		Person p = new Person(firstName: "Saim", lastName: "Malik")	
+		def json = p as JSON		
 		[saim:p, myJSON:json]
 	}
 	
