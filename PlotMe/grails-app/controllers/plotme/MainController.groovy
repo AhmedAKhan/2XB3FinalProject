@@ -7,9 +7,17 @@ class MainController {
 	static Scanner input;
 	static Formatter output;
 	static pathString = "ERROR";// = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/"//market-share.csv"
+	def json;
 	
     def index() {
+		def activeFile = "No file activated"
 		
+		if (UploadedFile.count > 0) {
+			UploadedFile up = UploadedFile.get(UploadedFile.count)
+			activeFile = up.fileName
+		}
+		
+		[activeFile:activeFile]
 	}
 	
 	def titanic() {
@@ -49,9 +57,9 @@ class MainController {
 		
 		pathString += "files/${name}"
 		
-		System.out.println(pathString)
+//		System.out.println(pathString)
 		
-		UploadedFile upFile = new UploadedFile(pathString).save()
+		UploadedFile upFile = new UploadedFile(filePath: "${pathString}", fileName:"${name}").save()
 		
 //		[myFile:name]
 	}
@@ -65,7 +73,7 @@ class MainController {
 		
 		def sorted = params.sorted
 		
-		System.out.println("SORTED: ${sorted}")
+//		System.out.println("SORTED: ${sorted}")
 		
 		if (UploadedFile.count > 0) {
 			UploadedFile abc = UploadedFile.get(UploadedFile.count)
@@ -102,15 +110,39 @@ class MainController {
 			//Person p = new Person(firstName: 'Saim', lastName: 'Malik')
 			
 			
-			def json = a as JSON
+			json = a as JSON
 			
-			[objJSON:json]
+//			[objJSON:json]
+//			bar()
+//			redirect(controller: "Main", action: "bar", xyz:"post", params: [json: "${json}"])
+			
+			if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
+			else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
+			else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
+			else render "Error in redirecting part!"
+			
+//			render (view:'bar.gsp')
 		} else {
 			render "Please upload a file"
 		}
 		
 //		String[] arrDepCols = depCols.split(",")
 		
+	}
+	
+	def bar() {
+		println "INSIDE BAR"
+		[objJSON:json]
+	}
+	
+	def whiskers() {
+		println "INSIDE WHISKERS"
+		[objJSON:json]
+	}
+	
+	def pie() {
+		println "INSIDE PIE"
+		[objJSON:json]
 	}
 	
 	/********************************************************************************************************/
