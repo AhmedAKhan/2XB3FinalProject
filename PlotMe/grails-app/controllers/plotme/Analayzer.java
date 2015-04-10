@@ -33,10 +33,9 @@ public class Analayzer {
     public QuartileInformation analyzeGraph(ArrayList<String[]> dataAsStrings, int x, String u) {
         //get all the min, max, and all the quartile information
 //        Data a = getPairr(myList, 0, 5, "row");
-        ArrayList<Point[]> datasets = parse.getAllDataSets(dataAsStrings, x, x, u);
-        QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
-        QuartileInformation oddestGraph = getOddestGraph(graphInfo);
-
+        final ArrayList<Point[]> datasets = parse.getAllDataSets(dataAsStrings, x, x, u);
+        final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
+        final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
         return oddestGraph;
     }
 
