@@ -66,69 +66,69 @@ class MainController {
 	
 	
 	def drawGraph() {
-		def graph = params.graphOptions
-		
-		def indepCol = params.independent
-		def depCol = params.dependent
-		
-		def sorted = params.sorted
-		
+        def graph = params.graphOptions
+
+        def indepCol = params.independent
+        def depCol = params.dependent
+
+        def sorted = params.sorted
+
 //		System.out.println("SORTED: ${sorted}")
-		
-		if (UploadedFile.count > 0) {
-			UploadedFile abc = UploadedFile.get(UploadedFile.count)
-			String pathOfFile = "${abc.filePath}"
-			
-			int indep = 0;
-			
-			if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
-			
-			int dep = Integer.parseInt("${depCol}")
-			
-			ArrayList <String[]> myList = Parse.getArray (pathOfFile);
+
+        if (UploadedFile.count > 0) {
+            UploadedFile abc = UploadedFile.get(UploadedFile.count)
+            String pathOfFile = "${abc.filePath}"
+
+            int indep = 0;
+
+            if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
+
+            int dep = Integer.parseInt("${depCol}")
+
+            ArrayList<String[]> myList = Parse.getArray(pathOfFile);
 //			ArrayList <String[]> myListSorted = Parse.getArray (pathOfFile);
 //			
 //			for (String[] s : myListSorted) {
 //				Arrays.sort(s);
 ////				System.out.println(Arrays.toString(s));
 //			}
-			
-			Data a = Parse.getPair(myList, indep, dep);;
-			
-			if ("${sorted}".toString().equals("on")) {
-				a = a.sort();//Parse.getPair(myListSorted, indep, dep);
+
+            Data a = Parse.getPair(myList, indep, dep); ;
+
+            if ("${sorted}".toString().equals("on")) {
+                a = a.sort();//Parse.getPair(myListSorted, indep, dep);
 //				println "ON!"
-			}
+            }
 //			else { 
 //				a = Parse.getPair(myList, indep, dep);
 //				println "OFF!"
 //			}
-			
+
 //			System.out.println(a.toString())
-			
+
 //			Data p = new Data("name", "x", "y", null);
-			//Person p = new Person(firstName: 'Saim', lastName: 'Malik')
-			
-			
-			json = a as JSON
-			
+            //Person p = new Person(firstName: 'Saim', lastName: 'Malik')
+
+
+            json = a as JSON
+
 //			[objJSON:json]
 //			bar()
 //			redirect(controller: "Main", action: "bar", xyz:"post", params: [json: "${json}"])
-			
-			if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
-			else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
-			else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
-			else render "Error in redirecting part!"
-			
+
+            if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
+            else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
+            else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
+            else render "Error in redirecting part!"
+
 //			render (view:'bar.gsp')
-		} else {
-			render "Please upload a file"
-		}
-		
+        } else {
+            render "Please upload a file"
+        }
+
 //		String[] arrDepCols = depCols.split(",")
-		
-	}
+
+    }
 	
 	def bar() {
 		println "INSIDE BAR"

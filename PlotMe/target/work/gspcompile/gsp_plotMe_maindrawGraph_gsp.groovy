@@ -12,25 +12,13 @@ Writer out = getOut()
 Writer expressionOut = getExpressionOut()
 registerSitemeshPreprocessMode()
 printHtmlPart(0)
-createClosureForHtmlPart(1, 1)
-invokeTag('captureHead','sitemesh',20,[:],1)
-printHtmlPart(2)
-createTagBody(1, {->
-printHtmlPart(3)
-expressionOut.print(objJSON)
-printHtmlPart(4)
-expressionOut.print(resource(dir: 'assets', file: 'jquery.min.js'))
-printHtmlPart(5)
-})
-invokeTag('captureBody','sitemesh',111,[:],1)
-printHtmlPart(6)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1428518592900L
+public static final long LAST_MODIFIED = 1428620952000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

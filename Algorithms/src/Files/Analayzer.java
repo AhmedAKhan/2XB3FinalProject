@@ -33,13 +33,19 @@ public class Analayzer {
 
     }
 
-    public QuartileInformation analyzeGraph(String dataset, String category){
+    public QuartileInformation analyzeGraph(ArrayList<Point> dataset){
         //get all the min, max, and all the quartile information
-        QuartileInformation[]  graphInfo = getQuartileInformationOfData(dataset, category);
+        QuartileInformation[]  graphInfo = getQuartileInformationOfData(dataset, dataset);
         QuartileInformation oddestGraph = getOddestGraph(graphInfo);
 
         return oddestGraph;
     }
+
+    /**
+     *
+     * @param graphInfo: the graph info will be the information of the graph given in an array of quartile information obejcts,
+     * @return : the quartile information object of the weirdest graph
+     */
     public QuartileInformation getOddestGraph(QuartileInformation[] graphInfo){
         int currentHighestValue = Integer.MIN_VALUE;
         QuartileInformation oddestGraph = null;
@@ -97,7 +103,7 @@ public class Analayzer {
      *
      * @return This will return an array of quartile information
      */
-    private QuartileInformation[] getQuartileInformationOfData(String dataset, String category){
+    private QuartileInformation[] getQuartileInformationOfData(ArrayList<Point> dataset){
 
 
         return null;
