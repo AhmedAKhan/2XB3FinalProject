@@ -71,6 +71,11 @@ public class Analayzer {
             }// for loop
         }//end for loop
 
+        //print all the values
+        for(int i =0; i < quartilInformation.length; i++){
+            System.out.println("i: " + i + " value: " + graphInfo[i].value);
+        }
+
         return oddestGraph;
     }
 
@@ -103,8 +108,6 @@ public class Analayzer {
             independentVariable = ind;
             dependentVariable = dep;
         }
-
-        ;
     }
 
 
@@ -119,14 +122,20 @@ public class Analayzer {
             OptimalSort.sort(sortedPoints);
             double min = sortedPoints[0].getValue();
             double q1 = sortedPoints[sortedPoints.length / 4].getValue();
-            double q2 = sortedPoints[sortedPoints.length / 2].getValue();
+
+
+            System.out.println("sortedPoints.length/2: " + sortedPoints.length/2 + " sortedPoints.length/2+1: " + (sortedPoints.length/2+1));
+            System.out.println("sortedPoints.length/2-1: " + sortedPoints[sortedPoints.length/2-1] + " sortedPoints.length/2" + sortedPoints[(sortedPoints.length/2)]);
+            double q2;// = sortedPoints[sortedPoints.length / 2].getValue();
+            if(sortedPoints.length%2 == 0 ) q2 = (sortedPoints[sortedPoints.length/2-1].getValue() + sortedPoints[sortedPoints.length/2].getValue())/2;
+            else q2 = sortedPoints[sortedPoints.length / 2].getValue();
+
             double q3 = sortedPoints[sortedPoints.length * 3 / 4].getValue();
             double max = sortedPoints[sortedPoints.length - 1].getValue();
-            QuartileInformation currentDataSet = new QuartileInformation(min, q1, q2, q3, max);
-
+            dataInformation[i] = new QuartileInformation(min, q1, q2, q3, max);
         }
 
-        return null;
+        return dataInformation;
     }
 
     /**
@@ -159,12 +168,14 @@ public class Analayzer {
         private double[] quartileInformation;  ///stores all the quartile information
         private int value;          //this value represents how different this graph is from the rest
 
-        public QuartileInformation(double min, double q1, double q2, double q3, double max) {
-            this(new double[]{min, q1, q2, q3, max});
-        }
+        public QuartileInformation(double min, double q1, double q2, double q3, double max) { this(new double[]{min, q1, q2, q3, max}); }
+        public QuartileInformation(double[] quartileInformation) { this.quartileInformation = quartileInformation; }
 
-        public QuartileInformation(double[] quartileInformation) {
-            this.quartileInformation = quartileInformation;
+        @Override public String toString(){
+            String s = "";
+            s += "name: " + name + " value: " + value + " quartileInformation: ";
+            for(int i = 0; i < quartileInformation.length; i++){ s+= " q"+i+": " + quartileInformation[i]; }
+            return s;
         }
     }
 
@@ -174,12 +185,28 @@ public class Analayzer {
         Analayzer analyzer = new Analayzer();
 
         QuartileInformation[] arr = new QuartileInformation[5];
-        arr[0] = new QuartileInformation();
-        arr[1] = new QuartileInformation();
-        arr[2] = new QuartileInformation();
-        arr[3] = new QuartileInformation();
-        arr[4] = new QuartileInformation();
-        analyzer.getOddestGraph(arr);
+        arr[0] = new QuartileInformation(0.04, 0.36, 1.36, 14.98, 57.24);
+        arr[1] = new QuartileInformation(0.04, 0.32, 1.26, 13.98, 57.46);
+        arr[2] = new QuartileInformation(0.08, 0.26, 1.25, 13.37, 56.62);
+        arr[3] = new QuartileInformation(0.07, 0.3, 1.16, 13.37, 56.89);
+        arr[4] = new QuartileInformation(0, 1, 3, 20, 70);
+        QuartileInformation a = analyzer.getOddestGraph(arr);
+        System.out.println("Quartile information: " + a);
+
+        ArrayList<Point[]> dataset = new ArrayList<Point[]>();
+        dataset.add(new Point[]{new Point("AOL",4.58),new Point("All the WEB",0.09),new Point("Alta Vista",0.74), new Point("Ask", 1.36), new Point("Excite",0.36), new Point("Google",57.24), new Point("Lycos", 0.04), new Point("MSN",14.98), new Point("Yahoo",17.19), new Point("others", 0)});
+        dataset.add(new Point[]{new Point("AOL",4.37),new Point("All the WEB",0.08),new Point("Alta Vista",0.71), new Point("Ask", 1.26), new Point("Excite",0.32), new Point("Google",57.46), new Point("Lycos", 0.04), new Point("MSN",14.98), new Point("Yahoo",18.43), new Point("others", 0)});
+        dataset.add(new Point[]{new Point("AOL",4.21),new Point("All the WEB",0.08),new Point("Alta Vista",0.66), new Point("Ask", 1.16), new Point("Excite",0.3 ), new Point("Google",56.89), new Point("Lycos", 0.07), new Point("MSN",14.98), new Point("Yahoo",19.66), new Point("others", 0)});
+        dataset.add(new Point[]{new Point("AOL",4.37),new Point("All the WEB",0.08),new Point("Alta Vista",0.61), new Point("Ask", 1.25), new Point("Excite",0.29), new Point("Google",56.62), new Point("Lycos", 0.09), new Point("MSN",14.98), new Point("Yahoo",19.95), new Point("others", 0)});
+        dataset.add(new Point[]{new Point("AOL",4.14),new Point("All the WEB",0.07),new Point("Alta Vista",0.56), new Point("Ask", 1.2 ), new Point("Excite",0.26), new Point("Google",57.36), new Point("Lycos", 0.09), new Point("MSN",14.98), new Point("Yahoo",19.49), new Point("others", 0)});
+        arr = analyzer.getQuartileInformationOfData(dataset);
+
+        System.out.println("arr: " + arr);
+        for(int i =0; i < arr.length; i++){
+            System.out.println("i: " + i + " arr[i]: " + arr[i]);
+        }
+        //tested the printed values with the values given by excel and it was correct
+
     }
 
     public static void main(String[] args) {
