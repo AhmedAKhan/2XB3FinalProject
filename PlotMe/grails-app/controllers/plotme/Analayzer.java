@@ -27,13 +27,14 @@ public class Analayzer {
 
     }
 
-
     /**
 //     * @param dataset = the string of the csv file
      */
-    public QuartileInformation analyzeGraph(ArrayList<Point[]> dataset) {
+    public QuartileInformation analyzeGraph(ArrayList<String[]> dataAsStrings, int x, String u) {
         //get all the min, max, and all the quartile information
-        QuartileInformation[] graphInfo = getQuartileInformationOfData(dataset);
+//        Data a = getPairr(myList, 0, 5, "row");
+        ArrayList<Point[]> datasets = parse.getAllDataSets(dataAsStrings, x, x, u);
+        QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
         QuartileInformation oddestGraph = getOddestGraph(graphInfo);
 
         return oddestGraph;
@@ -98,20 +99,6 @@ public class Analayzer {
     }
 
     /**
-     *
-     */
-    public class ChartInformation {
-        public ArrayList independentVariable;
-        public ArrayList dependentVariable;
-
-        public ChartInformation(ArrayList ind, ArrayList dep) {
-            independentVariable = ind;
-            dependentVariable = dep;
-        }
-    }
-
-
-    /**
      * @return This will return an array of quartile information
      * @parem it will have some input
      */
@@ -136,26 +123,6 @@ public class Analayzer {
         }
 
         return dataInformation;
-    }
-
-    /**
-     * this is the type everything is stored on
-     */
-    private class KeyValuePair implements Comparable<KeyValuePair> {
-        private int value;
-        private String key;
-
-        public KeyValuePair(int value, String key) {
-            this.value = value;
-            this.key = key;
-        }
-
-        @Override
-        public int compareTo(KeyValuePair o) {
-            if (value > o.value) return 1;
-            if (value == o.value) return 0;
-            return -1;
-        }
     }
 
     /**
