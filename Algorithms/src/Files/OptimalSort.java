@@ -117,8 +117,8 @@ public class OptimalSort
 //        if(!sorted(comparables, middlePoint+1, max)) throw new Exception("the values from min: " + (middlePoint+1) + " middlePoint: " + max + " are not sorted yet");
         merge(comparables, min, middlePoint, max, increasing);//combine
     }
-    public static void merge(Comparable[] a, int lo, int mid, int hi){}
-    public static void merge(Comparable[] a, int lo, int mid, int hi, boolean increasing)
+    private static void merge(Comparable[] a, int lo, int mid, int hi){}
+    private static void merge(Comparable[] a, int lo, int mid, int hi, boolean increasing)
     {  // Merge a[lo..mid] with a[mid+1..hi].
         int i = lo, j = mid+1;
         Comparable[] aux = new Comparable[hi+lo+1];
