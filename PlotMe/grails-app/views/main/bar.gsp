@@ -14,12 +14,23 @@
             stroke: #000;
             shape-rendering: crispEdges;
         }
+        
+        .back {
+		font-size: large;
+		}
+		.back:hover {
+			color: red;
+		}
+        
     </style>
 </head>
 
 <body>
 
 <h1>Bar Graph</h1>
+<div>
+	<a href="${resource(dir: 'main')}" class="back">Go Back</a>
+</div>
 <hr>
 
 <div id="abc" data-name="${objJSON}"></div>

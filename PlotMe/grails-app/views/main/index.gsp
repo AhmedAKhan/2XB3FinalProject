@@ -39,7 +39,7 @@
 
 
 					<div>
-						<g:uploadForm action="drawGraph" method="post">
+						<g:uploadForm action="drawGraph" method="post" class="settingsForm" style="display:none">
 					
 							<p class="menuTitle">Pick a graph</p>
 												
@@ -64,10 +64,10 @@
 					                            
 					                                
 					                                
-							<label for="independent">Independent Column:</label><br/>
-							<input type="text" name="independent" value="0"><br/>
-							<label for="dependent">Dependent Columns (comma separated):</label><br/>
-							<input type="text" name="dependent" value="6">
+							<label for="independent">Independent Row (x-axis)</label><br/>
+							<input id="indepInput" class="axisInput" type="text" name="independent" value="0"><br/>
+							<label for="dependent">Dependent Row (y-axis)</label><br/>
+							<input id="depInput" class="axisInput" type="text" name="dependent" value="1">
 							<br/>
 						
 							<div class="checkbox lineText">
@@ -145,7 +145,28 @@
 		var red = "File Active: No file activated"
 
 		if (fileStatus === red) activeFile.css({'color':'red','text-indent':'0px'});
-		else activeFile.css({'color':'green','text-indent':'0px'});
+		else {
+			activeFile.css({'color':'green','text-indent':'0px'});
+			$('.settingsForm').css('display','initial');
+		}
+
+		var submit = $('#submit')
+		
+		var checkEmptyInput = function() {
+				if($('#indepInput').val() != '' && $('#depInput').val() != '') {
+		        	submit.removeAttr('disabled');
+		        } else {
+		        	submit.attr('disabled','disabled'); 
+			    }
+			}
+		
+		checkEmptyInput();
+		
+<%--		submit.attr('disabled','disabled');--%>
+		$('.axisInput').keyup(function() {
+	        checkEmptyInput();
+		});
+	     
 	});
 </script>
 
