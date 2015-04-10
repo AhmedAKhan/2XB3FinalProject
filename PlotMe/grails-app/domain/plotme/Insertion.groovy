@@ -18,18 +18,6 @@ public class Insertion
         System.out.println();
     }
 
-    public static <T extends Comparable<T>> boolean sorted(T[] a){ return sorted(a, OptimalSort.type.INCREASING);}
-    public static <T extends Comparable<T>> boolean sorted(T[] a, OptimalSort.type sortType)
-    {  	// Test whether the array entries are in order.
-        //this loop runs through the entire array
-        for(int i = 0; i < a.length-1; i++){
-            //checks if the next element is smaller then itself, if it is it returns false
-            if(sortType == OptimalSort.type.INCREASING){ if(a[i].compareTo( a[i+1]) > 0) return false; }
-            else if(a[i].compareTo(a[i+1]) < 0) return false;
-        }
-        return true;
-    }
-
     public static <T extends Comparable<T>> void sort(T[] a) { sort(a, OptimalSort.type.INCREASING);}
     public static <T extends Comparable<T>> void sort(T[] a, OptimalSort.type increasing){ sort(a, 0, a.length-1, increasing); }
     public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, OptimalSort.type); }
@@ -52,7 +40,7 @@ public class Insertion
         }
     }
 
-    public static <T extends Comparable<T>> boolean needsExchange(T currentElement, T secondElement, OptimalSort.type sortType){
+    private static <T extends Comparable<T>> boolean needsExchange(T currentElement, T secondElement, OptimalSort.type sortType){
         if(currentElement == null) return -1;
         if(secondElement == null) return 1;
         if(sortType == OptimalSort.type.INCREASING) return currentElement.compareTo(secondElement) < 0;
