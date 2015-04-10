@@ -20,10 +20,9 @@ class MainController {
 		[activeFile:activeFile]
 	}
 	
-	def titanic() {
-		Person p = new Person(firstName: "Saim", lastName: "Malik")	
+	def titanic() {	
 		def json = p as JSON		
-		[saim:p, myJSON:json]
+		[myJSON:json]
 	}
 	
 	def histogram() {
@@ -68,10 +67,13 @@ class MainController {
 	def drawGraph() {
 		def graph = params.graphOptions
 		
+		def rowORcol = params.rowColOptions
+		
 		def indepCol = params.independent
 		def depCol = params.dependent
 		
 		def sorted = params.sorted
+		def search = params.search
 		
 //		System.out.println("SORTED: ${sorted}")
 		
@@ -83,9 +85,47 @@ class MainController {
 			
 			if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
 			
-			int dep = Integer.parseInt("${depCol}")
+//			String[] depArr = "${depCol}".toString().split(",");
+			
+			int dep;
 			
 			ArrayList <String[]> myList = Parse.getArray (pathOfFile);
+			
+			String rowORcolInverse;
+			
+			if ("${rowORcol}".toString().equals("row")) rowORcolInverse = "column";
+			else if ("${rowORcol}".toString().equals("col")) rowORcolInverse = "row";
+			
+			String[] depArr = "${depCol}".toString().split(",");
+			
+			if ("${search}".toString().equals("on")) {
+				// Get row (or column) by searching for an input string in the given column (or row)
+				dep = Integer.parseInt(depArr[0]);
+				
+				RedBlackBST<String, Integer> st = Parse.getBST(myList, dep, "${rowORcol}".toString());
+				
+				String temp = st.get(depArr[1]).toString();
+				
+				if (temp.equals("null")) {
+					render "<h1>Searched input could not be found in given independent ${rowORcolInverse}</h1>"
+					return;
+				} else {
+					dep = Integer.parseInt(temp);
+				}
+			} else {
+				if (depArr.length != 1) {
+					render "<h1>Invalid input (if you want to search, please make sure to check the Search checkbox)</h1>"
+					return;
+				} else {
+					try {
+						dep = Integer.parseInt(depArr[0]);
+					} catch (Exception e) {
+						render "<h1>Invalid input for Dependent ${rowORcol}</h1>"
+						return;
+					}
+				}
+			}
+			
 //			ArrayList <String[]> myListSorted = Parse.getArray (pathOfFile);
 //			
 //			for (String[] s : myListSorted) {
@@ -93,7 +133,7 @@ class MainController {
 ////				System.out.println(Arrays.toString(s));
 //			}
 			
-			Data a = Parse.getPair(myList, indep, dep);;
+			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
 			
 			if ("${sorted}".toString().equals("on")) {
 				a = a.sort();//Parse.getPair(myListSorted, indep, dep);
@@ -175,11 +215,23 @@ class MainController {
 //		openInputFile(pathString)
 //		closeInputFile()
 			
-		String pathOfFile = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/WDI_Data.csv";//pathString + "market-share.csv"
+		String pathOfFile = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/market-share.csv";//pathString + "market-share.csv"
+		
+		String[] depArr = "0,01/01/2005".toString().split(",");
+		
+		println "${depArr}"
 		
 		ArrayList <String[]> myList = Parse.getArray (pathOfFile);
-		Data a = Parse.getPair(myList, 0, 47);
 		
-		System.out.println(a.toString());
+		int dep = Integer.parseInt(depArr[0]);
+		
+		RedBlackBST<String, Integer> st = Parse.getBST(myList, 0, "row");
+//		dep = Integer.parseInt(st.get(depArr[1]));
+		
+		System.out.println(st.get(depArr[1]));
+		
+//		Data a = Parse.getPair(myList, 0, 47);
+//		
+//		System.out.println(a.toString());
 	}
 }

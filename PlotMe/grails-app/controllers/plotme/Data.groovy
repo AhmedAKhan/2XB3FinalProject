@@ -1,10 +1,15 @@
 package plotme
 
+// This class is used by the view to draw the graphs
+// This is used to make the code more abstract and make it easier to add more parameters later on if we desired
+
 class Data {
 	private String Name;
 	private String xaxis;
 	private String yaxis;
-	public ArrayList<?> data;
+	public ArrayList<?> data; // stores Point (independent, dependent) 
+	
+	// Initialize Data
 	
 	public Data(ArrayList<?> data){ this("Name", "x axis", "y axis", data);}
 	public Data (String N, String x, String y, ArrayList<?> d){
@@ -13,6 +18,8 @@ class Data {
 		this.yaxis=y;
 		this.data = d;
 	}
+	
+	// Getters
 	
 	public String getName() {  return Name;  }
 	

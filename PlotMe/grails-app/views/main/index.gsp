@@ -61,13 +61,34 @@
 					                Pie Chart
 					            </label>
 					        </div>
-					                            
+					        
+					        
+					        <p class="menuTitle">Row/Column Based</p>
+												
+					        <div class="radio lineText">
+					            <label>
+					                <input type="radio" name="rowColOptions" id="rowOption" value="row" checked>
+					                Row
+					            </label>
+					        </div>
+					        <div class="radio lineText">
+					            <label>
+					                <input type="radio" name="rowColOptions" id="colOption" value="col">
+					                Column
+					            </label>
+					        </div>
+					        					                                
 					                                
-					                                
-							<label for="independent">Independent Row (x-axis)</label><br/>
+							<label for="independent">Independent <span class="rowCol"></span> (x-axis)</label><br/>
 							<input id="indepInput" class="axisInput" type="text" name="independent" value="0"><br/>
-							<label for="dependent">Dependent Row (y-axis)</label><br/>
+							<label for="dependent">Dependent <span class="rowCol"></span> (y-axis)</label><br/>
 							<input id="depInput" class="axisInput" type="text" name="dependent" value="1">
+<%--							<div class="checkbox lineText">--%>
+						   		<label style="padding-left: 0px">
+						        	<input name="search" type="checkbox"> Search
+						    	</label>
+<%--							</div>--%>
+							
 							<br/>
 						
 							<div class="checkbox lineText">
@@ -77,6 +98,8 @@
 							</div>
 							
 							<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success">
+							
+							<input type="submit" name="analyze" id="analyze" value="Analyze" class="btn btn-primary">
 						
 						</g:uploadForm>
 					</div>
@@ -166,6 +189,21 @@
 		$('.axisInput').keyup(function() {
 	        checkEmptyInput();
 		});
+
+		var rcOptions = $('input[name=rowColOptions]');
+
+		var selectRowCol = function() {
+				if ($('#rowOption').is(':checked')) {
+					 $('.rowCol').text('Row');
+				}
+				else if ($('#colOption').is(':checked')) { 
+					$('.rowCol').text('Column');
+				}
+			}
+		
+		selectRowCol();
+		
+		rcOptions.click(selectRowCol);
 	     
 	});
 </script>

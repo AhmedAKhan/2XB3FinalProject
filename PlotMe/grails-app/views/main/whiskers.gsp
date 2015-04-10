@@ -32,7 +32,7 @@
 <body>
 <h1>Box and Whisker Graph</h1>
 <div>
-	<a href="${resource(dir: 'main')}" class="back">Go Back</a>
+	<a href="javascript:history.back()" class="back">Go Back</a>
 </div>
 <hr>
 
