@@ -29,7 +29,7 @@ public class Analayzer {
 
 
     /**
-     * @param dataset = the string of the csv file
+//     * @param dataset = the string of the csv file
      */
     public QuartileInformation analyzeGraph(ArrayList<Point[]> dataset) {
         //get all the min, max, and all the quartile information

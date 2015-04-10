@@ -30,7 +30,7 @@ class Data {
 			arrPoint[i] = data.get(i)
 		}
 		
-		OptimalSort.sort(arrPoint, OptimalSort.DECREASING);
+		OptimalSort.sort(arrPoint, OptimalSort.type.DECREASING);
 
 		for (int i = 0; i < arrPoint.length; i++) {
 			sortedData.add(arrPoint[i]);
