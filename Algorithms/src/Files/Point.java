@@ -1,6 +1,6 @@
 package Files;
 
-public class Point {
+public class Point implements Comparable<Point> {
 	private String name;
 	private double value;
 	
@@ -28,5 +28,13 @@ public class Point {
 	
     @Override public String toString(){
         return "(n: " + name + ", v: " + value+")";
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        if(o.getClass() != getClass()) return 1;
+        if(value > o.getValue()) return 1;
+        if(value == o.getValue()) return 0;
+        return -1;
     }
 }
