@@ -3,29 +3,39 @@
 
 <head>
 
-
+<link rel="stylesheet" href="${resource(dir: 'assets', file: 'bootstrap.min.css')}">
+<link rel="stylesheet" href="${resource(dir: 'assets', file: 'bootstrap-theme.min.css')}">
 
 </head>
 
 <body>
 
-<div>pie chart</div>
+<h1>Pie Chart</h1>
+<hr>
 
 <div id="jsonObject" data-name="${objJSON}"></div>
 
-<div id="main">
-    <div id="sequence"></div>
-    <div id="chart">
-        <div id="explanation" style="visibility: hidden;">
-            <span id="percentage"></span><br/>
-            of people had this happen to them
-        </div>
-    </div>
-</div>
+<div class="row">
 
-<div id="sidebar">
-    <input type="checkbox" id="togglelegend" checked> Legend<br/>
-    <div id="legend" style="visibility: visible;"></div>
+	<div class="col-md-8">
+		<div id="main">
+		    <div id="sequence"></div>
+		    <div id="chart">
+		        <div id="explanation" style="visibility: hidden;">
+		            <span id="percentage" style="display:none"></span><br/>
+		<%--            of people had this happen to them--%>
+		        </div>
+		    </div>
+		</div>
+	</div>
+		
+	<div class="col-md-4">
+		<div id="sidebar">
+		    <input type="checkbox" id="togglelegend" checked> Legend<br/>
+		    <div id="legend" style="visibility: visible;"></div>
+		</div>
+	</div>
+
 </div>
 
 
@@ -33,7 +43,8 @@
 <script src="${resource(dir: 'assets', file: 'jquery.min.js')}"></script>
 
 <script type="text/javascript">
-var data = $('#jsonObject').data().name;
+	var dataJSON = $('#jsonObject').data().name;
+	console.log("before: " + dataJSON);
 </script>
 
 <script src="${resource(dir: 'assets', file: 'pieChart.js')}"></script>

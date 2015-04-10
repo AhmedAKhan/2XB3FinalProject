@@ -49,7 +49,10 @@ var node;
 // row, and can receive the csv as an array of arrays.
 //d3.json("input.json", function(error, data){
 /* data = the data object  */
-var json = buildHierarchy2(data);
+console.log("after: " + dataJSON);
+
+var json = buildHierarchy2(dataJSON);
+
 createVisualization(json);
 //});
 
@@ -310,7 +313,7 @@ function getRandomColor() {
 }
 function buildHierarchy2(json){
     var data = json.data;
-    //console.log(json);
+    
     var root = {"name": "root", "children": []};
     for(var i = 0; i < data.length; i++){
         root.children.push({"name":data[i].name, "size":data[i].value});

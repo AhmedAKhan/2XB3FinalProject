@@ -19,6 +19,9 @@
 
 <body>
 
+<h1>Bar Graph</h1>
+<hr>
+
 <div id="abc" data-name="${objJSON}"></div>
 
 <section>
@@ -41,6 +44,7 @@
 
 <script>
 	var data = $('#abc').data();
+	console.log("before: " + data);
 </script>
 
 <script>
