@@ -6,11 +6,23 @@
 <link rel="stylesheet" href="${resource(dir: 'assets', file: 'bootstrap.min.css')}">
 <link rel="stylesheet" href="${resource(dir: 'assets', file: 'bootstrap-theme.min.css')}">
 
+<style type="text/css">
+	.back {
+		font-size: large;
+	}
+	.back:hover {
+		color: red;
+	}
+</style>
+
 </head>
 
 <body>
 
 <h1>Pie Chart</h1>
+<div>
+	<a href="${resource(dir: 'main')}" class="back">Go Back</a>
+</div>
 <hr>
 
 <div id="jsonObject" data-name="${objJSON}"></div>
