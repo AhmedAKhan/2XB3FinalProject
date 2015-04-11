@@ -4,7 +4,9 @@ public class OptimalSort
 {
 
     public static void main(String[] args){
-        System.out.println("assad");
+//        Integer[] arr = [0,5,6,3,2,64,7,6];
+//        sort(arr);
+//        System.out.println("string: " + Arrays.deepToString(arr));
     }
 
     private static final int MAXINSERTIONSORT = 15;
@@ -64,7 +66,7 @@ public class OptimalSort
      * @param <T> = could by any type as long as it can be compared to itself
      */
     public static <T extends Comparable<T>> void sort(T[] comparables){ sort(comparables, 0, comparables.length-1);}
-    public static <T extends Comparable<T>> void sort(T[] comparables, type sortType){ sort(comparables, 0, comparables.length-1, sortType); }
+    public static <T extends Comparable<T>> void sort(T[] comparables, type sortType){ sort(comparables, 0, comparables.length.intValue()-1, sortType); }
     /**
      * @param comparables = an array of numbers that can be sorted
      * @param min = the minimum element number you want to be sorted, including the min element

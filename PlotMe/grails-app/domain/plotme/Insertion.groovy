@@ -20,7 +20,7 @@ public class Insertion
 
     public static <T extends Comparable<T>> void sort(T[] a) { sort(a, OptimalSort.type.INCREASING);}
     public static <T extends Comparable<T>> void sort(T[] a, OptimalSort.type increasing){ sort(a, 0, a.length-1, increasing); }
-    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, OptimalSort.type); }
+    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, OptimalSort.type.INCREASING); }
     public static <T extends Comparable<T>> void sort(T[] a, int min, int max, OptimalSort.type sortType){
         // Sort a[] into increasing order.
         for (int i = min+1; i <= max; i++)

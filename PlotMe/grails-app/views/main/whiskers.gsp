@@ -18,11 +18,23 @@
         fill: none;
         stroke: #ccc;
     }
+    
+    .back {
+		font-size: large;
+	}
+	.back:hover {
+		color: red;
+	}
+    
     </style>
 </head>
 
 <body>
-<div>Box and Whisker Graph</div>
+<h1>Box and Whisker Graph</h1>
+<div>
+	<a href="javascript:history.back()" class="back">Go Back</a>
+</div>
+<hr>
 
 <div id="chart">
 
@@ -34,7 +46,8 @@
     <li>the line after the dashed line represents the minimum and maximum value (excluding outliers)</li>
     <li>the circles represents the outliers</li>
 </ul>
-%{--<div>${objJSON}</div>--}%
+<%--%{--<div>${objJSON}</div>--}%--%>
+
 <div id="jsonObject" data-name="${objJSON}"></div>
 
 <script src="${resource(dir: 'assets', file: 'jquery.min.js')}"></script>

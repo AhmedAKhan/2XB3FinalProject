@@ -1,5 +1,8 @@
 package plotme
 
+// This class is used by the view to draw the graphs
+// This is used to make the code more abstract and make it easier to add more parameters later on if we desired
+
 class Data {
 	private String Name;
 	private String xaxis;
@@ -23,6 +26,7 @@ class Data {
 
     //sorts the variables using the optimal sorting algorithm
 	public Data sort() {
+        System.out.println("in the sort");
         Point[] arrPoint = new Point[data.size()]//creates a new array of points
 		ArrayList<Point> sortedData = new ArrayList<>()//creates an empty arraylist
 
@@ -31,9 +35,12 @@ class Data {
 
         //sorts the array in decreasing order
 		OptimalSort.sort(arrPoint, OptimalSort.type.DECREASING);
+        OptimalSort.printArray(arrPoint);
 
         //places all the elements in the sorted array into an array list
 		for (int i = 0; i < arrPoint.length; i++) sortedData.add(arrPoint[i]);
+
+        System.out.println("arrPoint: " + Arrays.deepToString(arrPoint));
 
         //returns the data object of the new given information
 		return new Data(this.name,this.xaxis,this.yaxis,sortedData);

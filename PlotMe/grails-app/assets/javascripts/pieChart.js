@@ -21,7 +21,7 @@ var y = d3.scale.sqrt()//d3.scale.sqrt()
 var b = {w: 75, h: 30, s: 3, t: 10 };
 
 // Mapping of step names to colors.
-var colors = {"root":"#ffffff"};
+var colors = {};//{"root":"#ffffff"};
 
 // Total size of all segments; we set this later, after loading the data.
 var totalSize = 0;
@@ -49,7 +49,10 @@ var node;
 // row, and can receive the csv as an array of arrays.
 //d3.json("input.json", function(error, data){
 /* data = the data object  */
-var json = buildHierarchy2(data);
+//console.log("after: " + dataJSON);
+
+var json = buildHierarchy2(dataJSON);
+
 createVisualization(json);
 //});
 
@@ -83,7 +86,9 @@ function createVisualization(json) {
         .attr("display", function(d) { return null;})//return d.depth ? null : "none"; })
         .attr("d", arc)
         .attr("fill-rule", "evenodd")
-        .style("fill", function(d) { return colors[d.name]; })
+        .style("fill", function(d) {
+            if(d.name == "root") return "#ffffff";
+            return colors[d.name]; })
         .style("opacity", 1)
         .style("z-index", 1)
         .on("mouseover", mouseover)
@@ -202,6 +207,15 @@ function initializeBreadcrumbTrail() {
         .style("fill", "#000");
 }
 
+function adjustColor(name){
+    //var name = colors[d.name];
+    var colorBrightness = 0;
+    colorBrightness += parseInt(name.substring(1,3), 16);
+    colorBrightness += parseInt(name.substring(3,5), 16);//+name.substring(3,5);
+    colorBrightness += parseInt(name.substring(5,7), 16);//+name.substring(5,7);
+    if(colorBrightness < 382) return "#ffffff";
+    return "#000000";
+}
 // Generate a string that describes the points of a breadcrumb polygon.
 function breadcrumbPoints(d, i) {
     var points = [];
@@ -236,6 +250,9 @@ function updateBreadcrumbs(nodeArray, percentageString) {
         .attr("y", b.h / 2)
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
+        .style("fill", function(d){
+            return adjustColor(colors[d.name])
+        })
         .text(function(d) { return d.name; });
 
     // Set position for entering and updating nodes.
@@ -288,6 +305,7 @@ function drawLegend() {
         .attr("y", li.h / 2)
         .attr("dy", "0.35em")
         .attr("text-anchor", "middle")
+        .style("fill", function(d){ return adjustColor(d.value); })
         .text(function(d) { return d.key; });
 }
 
@@ -310,7 +328,7 @@ function getRandomColor() {
 }
 function buildHierarchy2(json){
     var data = json.data;
-    //console.log(json);
+    
     var root = {"name": "root", "children": []};
     for(var i = 0; i < data.length; i++){
         root.children.push({"name":data[i].name, "size":data[i].value});

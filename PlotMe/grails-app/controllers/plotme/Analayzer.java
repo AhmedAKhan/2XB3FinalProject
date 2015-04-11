@@ -1,9 +1,5 @@
 package plotme;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
 public class Analayzer {
@@ -33,10 +29,11 @@ public class Analayzer {
     public QuartileInformation analyzeGraph(ArrayList<String[]> dataAsStrings, int x, String u) {
         //get all the min, max, and all the quartile information
 //        Data a = getPairr(myList, 0, 5, "row");
-        final ArrayList<Point[]> datasets = parse.getAllDataSets(dataAsStrings, x, x, u);
-        final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
-        final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
-        return oddestGraph;
+//        final ArrayList<Point[]> datasets = Parse.getAllDataSets(dataAsStrings, x, x, u);
+//        final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
+//        final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
+//        return oddestGraph;
+        return null;
     }
 
     /**
