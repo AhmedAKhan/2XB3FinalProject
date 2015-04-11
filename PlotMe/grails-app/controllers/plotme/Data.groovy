@@ -22,11 +22,8 @@ class Data {
 	// Getters
 	
 	public String getName() {  return Name;  }
-	
 	public String getXaxis () {  return xaxis;  }
-	
 	public String getYaxis () {  return yaxis;  }
-	
 	public ArrayList<?> getData () {  return data;  }
 	
 	public Data sort() {
@@ -37,7 +34,7 @@ class Data {
 		for (int i = 0; i < arrPoint.length; i++) arrPoint[i] = data.get(i)
 
         //sorts the array in decreasing order
-		OptimalSort.sort(arrPoint, OptimalSort.type.DECREASING);
+		OptimalSort.sort(arrPoint, OptimalSort.DECREASING);
         OptimalSort.printArray(arrPoint);
 
         //places all the elements in the sorted array into an array list
