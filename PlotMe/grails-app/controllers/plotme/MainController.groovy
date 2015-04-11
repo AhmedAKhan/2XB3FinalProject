@@ -75,6 +75,16 @@ class MainController {
 		def sorted = params.sorted
 		def search = params.search
 		
+		def analyze = params.analyze
+		
+		if ("${analyze}".toString().equals("Analyze")) {
+			redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
+			return;
+		}
+		
+//		println "Analyze: ${analyze}"
+//		println "Submit ${submit}"
+		
 //		System.out.println("SORTED: ${sorted}")
 		
 		if (UploadedFile.count > 0) {
@@ -165,46 +175,27 @@ class MainController {
     }
 	
 	def bar() {
-		println "INSIDE BAR"
+//		println "INSIDE BAR"
 		[objJSON:json]
 	}
 	
 	def whiskers() {
-		println "INSIDE WHISKERS"
+//		println "INSIDE WHISKERS"
 		[objJSON:json]
 	}
 	
 	def pie() {
-		println "INSIDE PIE"
+//		println "INSIDE PIE"
 		[objJSON:json]
 	}
 	
+	def analyze() {
+		def indep = params.indep
+		render "${indep}"
+	}
+	
 	/********************************************************************************************************/
-	
-	// Opens the input file if it exists
-	public static void openInputFile(String name) {
-		try {
-			input = new Scanner(new File(name));
-		} catch (Exception e) {
-			System.out.println("File not found!");
-		}
-	}
-
-	// Closes the input file
-	public static void closeInputFile() { input.close(); }
-
-	// Creates/opens the output file
-	public static void openOutFile(String name) {
-		try {
-			output = new Formatter(name);
-		} catch (Exception e) {
-			System.out.println("An error occurred");
-		}
-	}
-
-	// Closes the output file
-	public static void closeOutputFile() { output.close();  }
-	
+		
 	public static void main(String[] args) {
 //		openInputFile(pathString)
 //		closeInputFile()
