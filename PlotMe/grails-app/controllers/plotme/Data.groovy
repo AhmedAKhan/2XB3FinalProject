@@ -40,8 +40,6 @@ class Data {
         //places all the elements in the sorted array into an array list
 		for (int i = 0; i < arrPoint.length; i++) sortedData.add(arrPoint[i]);
 
-        System.out.println("arrPoint: " + Arrays.deepToString(arrPoint));
-
         //returns the data object of the new given information
 		return new Data(this.name,this.xaxis,this.yaxis,sortedData);
 	}

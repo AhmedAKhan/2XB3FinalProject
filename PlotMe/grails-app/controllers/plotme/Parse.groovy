@@ -100,7 +100,10 @@ public class Parse {
         } else {
             for (int i =0; i<(s.get(1).length); i++) {
                 Data k = getPair (s, x, i, u);
-                a.addAll(k.getData().toArray(new Point[k.getData().size()]));
+                if(k.getData().size() == 0) continue;
+                Point[] p = new Point[k.getData().size()];
+                k.getData().toArray(p)
+                a.add(p);
             }
         }
         return a;

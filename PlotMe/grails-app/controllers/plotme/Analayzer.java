@@ -34,7 +34,7 @@ public class Analayzer {
         final ArrayList<Point[]> datasets = Parse.getSetofPairs(dataAsStrings, x, x, u);
         System.out.println("datasets: " + datasets.toString());
         final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
-//        System.out.println("graphInfo: " + Arrays.deepToString(graphInfo));
+        System.out.println("graphInfo: " + Arrays.deepToString(graphInfo));
         final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
 
         Point[] pointsArray = datasets.get(oddestGraph.positionInArray);
@@ -80,7 +80,7 @@ public class Analayzer {
 
         //print all the values
         for(int i =0; i < quartilInformation.length; i++){
-            System.out.println("i: " + i + " value: " + graphInfo[i].value);
+//            System.out.println("i: " + i + " value: " + graphInfo[i].value);
         }
 
         return oddestGraph;
@@ -110,7 +110,6 @@ public class Analayzer {
      */
     private QuartileInformation[] getQuartileInformationOfData(ArrayList<Point[]> dataset) {
         QuartileInformation[] dataInformation = new QuartileInformation[dataset.size()];
-        System.out.println("dataset: " + dataset);
         for (int i = 0; i < dataset.size(); i++) {
             if(dataset.get(i).length == 0) continue;
             Point[] sortedPoints = dataset.get(i);
@@ -119,8 +118,6 @@ public class Analayzer {
             double q1 = sortedPoints[sortedPoints.length / 4].getValue();
 
 
-//            System.out.println("sortedPoints.length/2: " + sortedPoints.length/2 + " sortedPoints.length/2+1: " + (sortedPoints.length/2+1));
-//            System.out.println("sortedPoints.length/2-1: " + sortedPoints[sortedPoints.length/2-1] + " sortedPoints.length/2" + sortedPoints[(sortedPoints.length/2)]);
             double q2;// = sortedPoints[sortedPoints.length / 2].getValue();
             if(sortedPoints.length%2 == 0 ) q2 = (sortedPoints[sortedPoints.length/2-1].getValue() + sortedPoints[sortedPoints.length/2].getValue())/2;
             else q2 = sortedPoints[sortedPoints.length / 2].getValue();
