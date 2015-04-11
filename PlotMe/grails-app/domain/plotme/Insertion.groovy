@@ -18,10 +18,22 @@ public class Insertion
         System.out.println();
     }
 
-    public static <T extends Comparable<T>> void sort(T[] a) { sort(a, OptimalSort.type.INCREASING);}
-    public static <T extends Comparable<T>> void sort(T[] a, OptimalSort.type increasing){ sort(a, 0, a.length-1, increasing); }
-    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, OptimalSort.type.INCREASING); }
-    public static <T extends Comparable<T>> void sort(T[] a, int min, int max, OptimalSort.type sortType){
+    public static <T extends Comparable<T>> boolean sorted(T[] a){ return sorted(a, true);}
+    public static <T extends Comparable<T>> boolean sorted(T[] a, boolean increasing)
+    {  	// Test whether the array entries are in order.
+        //this loop runs through the entire array
+        for(int i = 0; i < a.length-1; i++){
+            //checks if the next element is smaller then itself, if it is it returns false
+            if(increasing){ if(a[i].compareTo( a[i+1]) > 0) return false; }
+            else if(a[i].compareTo(a[i+1]) < 0) return false;
+        }
+        return true;
+    }
+
+    public static <T extends Comparable<T>> void sort(T[] a) { sort(a, true);}
+    public static <T extends Comparable<T>> void sort(T[] a, boolean increasing){ sort(a, 0, a.length-1, increasing); }
+    public static <T extends Comparable<T>> void sort(T[] a, int min, int max){ sort(a, min, max, true); }
+    public static <T extends Comparable<T>> void sort(T[] a, int min, int max, boolean increasing){
         // Sort a[] into increasing order.
         for (int i = min+1; i <= max; i++)
         {   // Insert a[i] among a[i-1], a[i-2], a[i-3]... ..
@@ -31,7 +43,7 @@ public class Insertion
 
             //it creates a loop that runs from the end of the sorted array to the element where we need to place the number
             int j;
-            for(j = i-1; j >= min && needsExchange(currentElement, a[j], sortType) ; j--){
+            for(j = i-1; j >= min && needsExchange(currentElement, a[j], increasing) ; j--){
                 a[j+1] = a[j];
             }
 
@@ -40,10 +52,10 @@ public class Insertion
         }
     }
 
-    private static <T extends Comparable<T>> boolean needsExchange(T currentElement, T secondElement, OptimalSort.type sortType){
+    public static <T extends Comparable<T>> boolean needsExchange(T currentElement, T secondElement, boolean increasing){
         if(currentElement == null) return -1;
         if(secondElement == null) return 1;
-        if(sortType == OptimalSort.type.INCREASING) return currentElement.compareTo(secondElement) < 0;
+        if(increasing) return currentElement.compareTo(secondElement) < 0;
         else return currentElement.compareTo(secondElement) > 0;
     }
 

@@ -1,6 +1,5 @@
 var skillsdata;
 
-//sample data used to display for the main screen
 skillsdata = {
     "Skills": {
         "Server & WinForm": {

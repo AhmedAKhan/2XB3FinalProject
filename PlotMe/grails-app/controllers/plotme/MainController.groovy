@@ -21,8 +21,8 @@ class MainController {
 	}
 	
 	def titanic() {	
-		def json = p as JSON		
-		[myJSON:json]
+//		def json = p as JSON		
+//		[myJSON:json]
 	}
 	
 	def histogram() {
@@ -65,29 +65,6 @@ class MainController {
 	
 	
 	def drawGraph() {
-        /*
-<<<<<<< HEAD
-        def graph = params.graphOptions
-
-        def indepCol = params.independent
-        def depCol = params.dependent
-
-        def sorted = params.sorted
-
-//		System.out.println("SORTED: ${sorted}")
-
-        if (UploadedFile.count > 0) {
-            UploadedFile abc = UploadedFile.get(UploadedFile.count)
-            String pathOfFile = "${abc.filePath}"
-
-            int indep = 0;
-
-            if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
-
-            int dep = Integer.parseInt("${depCol}")
-
-            ArrayList<String[]> myList = Parse.getArray(pathOfFile);
-=======*/
 		def graph = params.graphOptions
 		
 		def rowORcol = params.rowColOptions
@@ -130,7 +107,7 @@ class MainController {
 				String temp = st.get(depArr[1]).toString();
 				
 				if (temp.equals("null")) {
-					render "<h1>Searched input could not be found in given independent ${rowORcolInverse}</h1>"
+					render "<h1>Searched input could not be found in given ${rowORcolInverse}</h1>"
 					return;
 				} else {
 					dep = Integer.parseInt(temp);
@@ -149,73 +126,62 @@ class MainController {
 				}
 			}
 			
-//>>>>>>> development
-
 //			ArrayList <String[]> myListSorted = Parse.getArray (pathOfFile);
 //			
 //			for (String[] s : myListSorted) {
 //				Arrays.sort(s);
 ////				System.out.println(Arrays.toString(s));
 //			}
-
-/* <<<<<<< HEAD
-
-            Data a = Parse.getPair(myList, indep, dep); ;
-
-            if ("${sorted}".toString().equals("on")) {
-                a = a.sort();//Parse.getPair(myListSorted, indep, dep);
-======= */
 			
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
 			
 			if ("${sorted}".toString().equals("on")) {
 				a = a.sort();//Parse.getPair(myListSorted, indep, dep);
-//>>>>>>> development
 //				println "ON!"
-            }
+			}
 //			else { 
 //				a = Parse.getPair(myList, indep, dep);
 //				println "OFF!"
 //			}
-
+			
 //			System.out.println(a.toString())
-
+			
 //			Data p = new Data("name", "x", "y", null);
-            //Person p = new Person(firstName: 'Saim', lastName: 'Malik')
-
-
-            json = a as JSON
-
+			//Person p = new Person(firstName: 'Saim', lastName: 'Malik')
+			
+			
+			json = a as JSON
+			
 //			[objJSON:json]
 //			bar()
 //			redirect(controller: "Main", action: "bar", xyz:"post", params: [json: "${json}"])
-
-            if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
-            else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
-            else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
-            else render "Error in redirecting part!"
-
+			
+			if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
+			else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
+			else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
+			else render "Error in redirecting part!"
+			
 //			render (view:'bar.gsp')
-        } else {
-            render "Please upload a file"
-        }
-
+		} else {
+			render "Please upload a file"
+		}
+		
 //		String[] arrDepCols = depCols.split(",")
-
-    }
+		
+	}
 	
 	def bar() {
-		println "INSIDE BAR"
+//		println "INSIDE BAR"
 		[objJSON:json]
 	}
 	
 	def whiskers() {
-		println "INSIDE WHISKERS"
+//		println "INSIDE WHISKERS"
 		[objJSON:json]
 	}
 	
 	def pie() {
-		println "INSIDE PIE"
+//		println "INSIDE PIE"
 		[objJSON:json]
 	}
 	
@@ -251,7 +217,7 @@ class MainController {
 			
 		String pathOfFile = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/market-share.csv";//pathString + "market-share.csv"
 		
-		String[] depArr = "0,01/01/2005".toString().split(",");
+		String[] depArr = "1,US".toString().split(",");
 		
 		println "${depArr}"
 		
@@ -259,7 +225,7 @@ class MainController {
 		
 		int dep = Integer.parseInt(depArr[0]);
 		
-		RedBlackBST<String, Integer> st = Parse.getBST(myList, 0, "row");
+		RedBlackBST<String, Integer> st = Parse.getBST(myList, dep, "row");
 //		dep = Integer.parseInt(st.get(depArr[1]));
 		
 		System.out.println(st.get(depArr[1]));
