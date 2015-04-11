@@ -34,7 +34,7 @@ class Data {
 		for (int i = 0; i < arrPoint.length; i++) arrPoint[i] = data.get(i)
 
         //sorts the array in decreasing order
-		OptimalSort.sort(arrPoint, OptimalSort.DECREASING);
+		OptimalSort.sort(arrPoint, OptimalSort.type.DECREASING);
         OptimalSort.printArray(arrPoint);
 
         //places all the elements in the sorted array into an array list

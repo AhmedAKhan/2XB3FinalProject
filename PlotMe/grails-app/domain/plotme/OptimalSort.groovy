@@ -8,8 +8,13 @@ public class OptimalSort
     public static void main(String[] args){ System.out.println("the optimal number for max insertion sort is " + findOptimalMaxInsertion()); }
 
     private static int MAXINSERTIONSORT = 15;
-    public static final boolean INCREASING = true;
-    public static final boolean DECREASING = false;
+//    public static final boolean INCREASING = true;
+//    public static final boolean DECREASING = false;
+    public static enum type{
+        INCREASING,
+        DECREASING
+    }
+
     /**
      * @param size = the size of the array you want to make
      */
@@ -61,29 +66,29 @@ public class OptimalSort
      * @param <T> = could by any type as long as it can be compared to itself
      */
     public static <T extends Comparable<T>> void sort(T[] comparables){ sort(comparables, 0, comparables.length-1);}
-    public static <T extends Comparable<T>> void sort(T[] comparables, boolean increasing){ sort(comparables, 0, comparables.length-1, increasing); }
+    public static <T extends Comparable<T>> void sort(T[] comparables, type sortType){ sort(comparables, 0, comparables.length-1, sortType); }
     /**
      * @param comparables = an array of numbers that can be sorted
      * @param min = the minimum element number you want to be sorted, including the min element
      * @param max = the maximum element number you want to be sorted, including the max'th element
      */
-    public static <T extends Comparable<T>> void sort(T[] comparables, int min, int max) { sort(comparables, 0, comparables.length-1, true); }
-    public static <T extends Comparable<T>> void sort(T[] comparables, int min, int max, boolean increasing) {
+    public static <T extends Comparable<T>> void sort(T[] comparables, int min, int max) { sort(comparables, 0, comparables.length-1, type.INCREASING); }
+    public static <T extends Comparable<T>> void sort(T[] comparables, int min, int max, type sortType) {
         //use insertion sort if the array is to small
         if(max-min < MAXINSERTIONSORT) {
-            Insertion.sort(comparables, min, max, increasing);
+            Insertion.sort(comparables, min, max, sortType);
             return;
         }
         //do the dividing
         int middlePoint = (max+min)/2;
-        sort(comparables, min, middlePoint, increasing);
-        sort(comparables, middlePoint+1, max, increasing);
+        sort(comparables, min, middlePoint, sortType);
+        sort(comparables, middlePoint+1, max, sortType);
 //        if(!sorted(comparables, min, middlePoint)) throw new Exception("the values from min: " + min + " middlePoint: " + middlePoint + " are not sorted yet");
 //        if(!sorted(comparables, middlePoint+1, max)) throw new Exception("the values from min: " + (middlePoint+1) + " middlePoint: " + max + " are not sorted yet");
-        merge(comparables, min, middlePoint, max, increasing);//combine
+        merge(comparables, min, middlePoint, max, sortType);//combine
     }
     public static void merge(Comparable[] a, int lo, int mid, int hi){}
-    public static void merge(Comparable[] a, int lo, int mid, int hi, boolean increasing)
+    public static void merge(Comparable[] a, int lo, int mid, int hi, type sortType)
     {  // Merge a[lo..mid] with a[mid+1..hi].
         int i = lo, j = mid+1;
         Comparable[] aux = new Comparable[hi+lo+1];
@@ -92,13 +97,13 @@ public class OptimalSort
         for (int k = lo; k <= hi; k++)  // Merge back to a[lo..hi].
             if      (i > mid)              a[k] = aux[j++];
             else if (j > hi )              a[k] = aux[i++];
-            else if (compareValues(aux[j], aux[i], increasing)) a[k] = aux[j++];
+            else if (compareValues(aux[j], aux[i], sortType)) a[k] = aux[j++];
 //            else if (less(aux[j], aux[i])) a[k] = aux[j++];
             else                           a[k] = aux[i++];
     }
 
-    private static boolean compareValues(Comparable v, Comparable w, boolean increasing){
-        if(increasing) return less(v,w);
+    private static boolean compareValues(Comparable v, Comparable w, type sortType){
+        if(sortType == type.INCREASING) return less(v,w);
         else return greater(v,w);
     }
 

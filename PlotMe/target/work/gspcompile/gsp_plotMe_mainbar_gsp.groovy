@@ -21,18 +21,16 @@ expressionOut.print(objJSON)
 printHtmlPart(4)
 expressionOut.print(resource(dir: 'assets', file: 'jquery.min.js'))
 printHtmlPart(5)
-expressionOut.print(resource(dir: 'assets', file: 'd3.js'))
-printHtmlPart(6)
 })
-invokeTag('captureBody','sitemesh',118,[:],1)
-printHtmlPart(7)
+invokeTag('captureBody','sitemesh',119,[:],1)
+printHtmlPart(6)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1428730925000L
+public static final long LAST_MODIFIED = 1428785816000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
