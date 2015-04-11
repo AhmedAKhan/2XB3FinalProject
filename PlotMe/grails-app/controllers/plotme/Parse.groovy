@@ -5,8 +5,7 @@ public class Parse {
     // this method creates an array list containing all the data from the given
     // dataset where each element is
     // a row from the dataset
-    public static ArrayList<String[]> getArray(String S)
-            throws FileNotFoundException {
+    public static ArrayList<String[]> getArray(String S) throws FileNotFoundException {
 
         String line = ""; // intiliaze empty string
         ArrayList<String[]> myList = new ArrayList<String[]>(); // intialize new
@@ -25,11 +24,9 @@ public class Parse {
 
     // this method is used to create points (independent and dependent variables) by using columns
     public static Data getPairCol(ArrayList<String[]> s, int x, int y) {
-
         ArrayList<Point> k = new ArrayList<Point>();
-
-
         for (int i = 0; i < s.size(); i++) {  //iterate through the entire arraylist
+            if(i >= s.get(i).length) continue;
             if (s.get(i)[y].equals("")) {			//assume value 0 if entry is empty
                 Point p = new Point((s.get(i))[x], 0);
                 k.add(p);
@@ -93,16 +90,18 @@ public class Parse {
         ArrayList<Point[]> a = new ArrayList();
         if (u.equals("row")) {
             for (int i =0; i<s.size(); i++) {
-                Data k = getPair (s, x, i, u);
+                Data k = getPair(s, x, i, u);
+                if(k.getData().size() == 0) continue;
                 Point[] p = new Point[k.getData().size()];
-                a.addAll(k.getData().toArray(p));
-            }
-        }
+                k.getData().toArray(p);
 
-        else {
+                a.add(p);
+            }
+        } else {
             for (int i =0; i<(s.get(1).length); i++) {
                 Data k = getPair (s, x, i, u);
-                a.addAll(k.getData().toArray(new Point[k.getData().size()]));}
+                a.addAll(k.getData().toArray(new Point[k.getData().size()]));
+            }
         }
         return a;
     }
