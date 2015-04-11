@@ -148,23 +148,16 @@ class MainController {
 					}
 				}
 			}
-			
+
 //>>>>>>> development
 
 //			ArrayList <String[]> myListSorted = Parse.getArray (pathOfFile);
-//			
+//
 //			for (String[] s : myListSorted) {
 //				Arrays.sort(s);
 ////				System.out.println(Arrays.toString(s));
 //			}
-
-/* <<<<<<< HEAD
-
-            Data a = Parse.getPair(myList, indep, dep); ;
-
-            if ("${sorted}".toString().equals("on")) {
-                a = a.sort();//Parse.getPair(myListSorted, indep, dep);
-======= */
+            
 			
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
 			

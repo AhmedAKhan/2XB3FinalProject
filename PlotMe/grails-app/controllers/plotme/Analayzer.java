@@ -1,5 +1,6 @@
 package plotme;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Analayzer {
@@ -26,14 +27,20 @@ public class Analayzer {
     /**
 //     * @param dataset = the string of the csv file
      */
-    public QuartileInformation analyzeGraph(ArrayList<String[]> dataAsStrings, int x, String u) {
+    public Data analyzeGraph(ArrayList<String[]> dataAsStrings, int x, String u) {
         //get all the min, max, and all the quartile information
 //        Data a = getPairr(myList, 0, 5, "row");
-//        final ArrayList<Point[]> datasets = Parse.getAllDataSets(dataAsStrings, x, x, u);
-//        final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
-//        final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
-//        return oddestGraph;
-        return null;
+        final ArrayList<Point[]> datasets = Parse.getSetofPairs(dataAsStrings, x, x, u);
+        final QuartileInformation[] graphInfo = getQuartileInformationOfData(datasets);
+        final QuartileInformation oddestGraph = getOddestGraph(graphInfo);
+
+        Point[] pointsArray = datasets.get(oddestGraph.positionInArray);
+        ArrayList<Point> pointsAsArrayList = new ArrayList<Point>();
+        for(int i = 0; i < pointsArray.length; i++){
+            pointsAsArrayList.add(pointsArray[i]);
+        }
+        return new Data("", "", "", pointsAsArrayList);
+//        return null;
     }
 
     /**
@@ -115,7 +122,7 @@ public class Analayzer {
 
             double q3 = sortedPoints[sortedPoints.length * 3 / 4].getValue();
             double max = sortedPoints[sortedPoints.length - 1].getValue();
-            dataInformation[i] = new QuartileInformation(min, q1, q2, q3, max);
+            dataInformation[i] = new QuartileInformation(min, q1, q2, q3, max, i);
         }
 
         return dataInformation;
@@ -127,12 +134,13 @@ public class Analayzer {
      * value = this value represents how different this graph is from the rest
      */
     private class QuartileInformation {
+        private int positionInArray;
         private String name;        //this is the name of the graph, the heading to show what the data means, Programically it is used to tell the objects apart
         private double[] quartileInformation;  ///stores all the quartile information
         private int value;          //this value represents how different this graph is from the rest
 
-        public QuartileInformation(double min, double q1, double q2, double q3, double max) { this(new double[]{min, q1, q2, q3, max}); }
-        public QuartileInformation(double[] quartileInformation) { this.quartileInformation = quartileInformation; }
+        public QuartileInformation(double min, double q1, double q2, double q3, double max, int positionInArray) { this(new double[]{min, q1, q2, q3, max}, positionInArray); }
+        public QuartileInformation(double[] quartileInformation, int positionInArray) { this.quartileInformation = quartileInformation; this.positionInArray = positionInArray;}
 
         @Override public String toString(){
             String s = "";

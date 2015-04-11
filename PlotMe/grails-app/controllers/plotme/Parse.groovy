@@ -31,7 +31,6 @@ public class Parse {
 
 
         for (int i = 0; i < s.size(); i++) {  //iterate through the entire arraylist
-
             if (s.get(i)[y].equals("")) {			//assume value 0 if entry is empty
                 Point p = new Point((s.get(i))[x], 0);
                 k.add(p);
@@ -54,11 +53,8 @@ public class Parse {
 
         ArrayList<Point> k = new ArrayList<Point>();
         int a = (s.get(0)).length; //get the length of each row in the array list
-
         for (int i = 0; i < a; i++)  {		//iterate through the row
-
             if (s.get(y)[i].equals("")) {
-
                 Point p = new Point((s.get(x))[i], 0); //
                 k.add(p);
                 continue;
@@ -79,41 +75,36 @@ public class Parse {
 
     //this returns an arraylist of the required points using the column or row method depending on what the user specifies
     public static Data getPair(ArrayList<String[]> s, int x, int y, String u) {
-
         //Data a = new Data(u, u, u, s);
         if (u.equals("row")) {
             Data a = getPairRow(s,  x,  y);
             return a;
         }
         else {
-
             Data a = getPairCol(s,  x,  y);
             return a;
         }
-
     }
 
     //this function returns all pairs (independent variables with all possible dependent variables)
     //used to find the oddest graph
 
-    public static Data getSetofPairs (ArrayList<String[]> s, int x, int y, String u) {
-        ArrayList<Point> a = new ArrayList();
+    public static ArrayList<Point[]> getSetofPairs (ArrayList<String[]> s, int x, int y, String u) {
+        ArrayList<Point[]> a = new ArrayList();
         if (u.equals("row")) {
             for (int i =0; i<s.size(); i++) {
                 Data k = getPair (s, x, i, u);
-                a.addAll(k.getData());}}
+                Point[] p = new Point[k.getData().size()];
+                a.addAll(k.getData().toArray(p));
+            }
+        }
 
         else {
             for (int i =0; i<(s.get(1).length); i++) {
                 Data k = getPair (s, x, i, u);
-                a.addAll(k.getData());}
-
+                a.addAll(k.getData().toArray(new Point[k.getData().size()]));}
         }
-
-
-
-        return new Data ("","","",a);
-
+        return a;
     }
 
 
@@ -124,26 +115,18 @@ public class Parse {
     //this will create and return BST  given a row number for the ArrayList which can return the column number for a String
     public static RedBlackBST <String, Integer> getBSTRow (ArrayList<String[]> a, int x) {
         RedBlackBST<String, Integer> st = new RedBlackBST<String, Integer>();
-
         for (int i = 0; i<a.size(); i++) {
-
             st.put(a.get(i)[x],i); }
-
         return st;
-
     }
 
     //this will create and return a BST that can return the column number given the row numnber
 
     public static RedBlackBST <String, Integer> getBSTCol (ArrayList<String[]> a, int x) {
         RedBlackBST<String, Integer> st = new RedBlackBST<String, Integer>();
-
         for (int i = 0; i<a.get(1).length; i++) {
-
             st.put(a.get(x)[i].replace("\"", ""),i); }
-
         return st;
-
     }
 
     //this will call the specified method depending on whether the client wants to store row or column numbers
