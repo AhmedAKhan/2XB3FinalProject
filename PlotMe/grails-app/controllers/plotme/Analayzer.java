@@ -107,6 +107,7 @@ public class Analayzer {
      */
     private QuartileInformation[] getQuartileInformationOfData(ArrayList<Point[]> dataset) {
         QuartileInformation[] dataInformation = new QuartileInformation[dataset.size()];
+        System.out.println("dataset: " + dataset);
         for (int i = 0; i < dataset.size(); i++) {
             Point[] sortedPoints = dataset.get(i);
             OptimalSort.sort(sortedPoints);

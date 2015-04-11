@@ -77,10 +77,10 @@ class MainController {
 		
 		def analyze = params.analyze
 		
-		if ("${analyze}".toString().equals("Analyze")) {
-			redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
-			return;
-		}
+//		if ("${analyze}".toString().equals("Analyze")) {
+//			redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
+//			return;
+//		}
 		
 //		println "Analyze: ${analyze}"
 //		println "Submit ${submit}"
@@ -137,21 +137,17 @@ class MainController {
 			}
 
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
-			
+            if ("${analyze}".toString().equals("Analyze")) {
+//                System.out.println("${analyze}");
+//                redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
+                Analayzer analayzer = new Analayzer();
+//                ArrayList<Point[]> p = Parse.getSetofPairs(myList, indep, dep, "${rowORcol}".toString());
+                a = analayzer.analyzeGraph(myList, indep, "${rowORcol}".toString());
+            }
+
 			if ("${sorted}".toString().equals("on")) {
 				a = a.sort();//Parse.getPair(myListSorted, indep, dep);
-//>>>>>>> development
-//				println "ON!"
             }
-//			else {
-//				a = Parse.getPair(myList, indep, dep);
-//				println "OFF!"
-//			}
-
-//			System.out.println(a.toString())
-
-//			Data p = new Data("name", "x", "y", null);
-            //Person p = new Person(firstName: 'Saim', lastName: 'Malik')
 
 
             json = a as JSON

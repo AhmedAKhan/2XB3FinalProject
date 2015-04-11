@@ -24,8 +24,7 @@ public class Parse {
     }
 
     // this method is used to create points (independent and dependent variables) by using columns
-    public static Data getPairCol(ArrayList<String[]> s, int x,
-                                  int y) {
+    public static Data getPairCol(ArrayList<String[]> s, int x, int y) {
 
         ArrayList<Point> k = new ArrayList<Point>();
 
@@ -54,6 +53,7 @@ public class Parse {
         ArrayList<Point> k = new ArrayList<Point>();
         int a = (s.get(0)).length; //get the length of each row in the array list
         for (int i = 0; i < a; i++)  {		//iterate through the row
+            if(i >= s.get(y).length) continue;
             if (s.get(y)[i].equals("")) {
                 Point p = new Point((s.get(x))[i], 0); //
                 k.add(p);
