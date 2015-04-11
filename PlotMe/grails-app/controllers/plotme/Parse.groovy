@@ -115,10 +115,22 @@ public class Parse {
     //the specified string after searching for it using a BST
 
     //this will create and return BST  given a row number for the ArrayList which can return the column number for a String
+//    public static RedBlackBST <String, Integer> getBSTRow (ArrayList<String[]> a, int x) {
+//        RedBlackBST<String, Integer> st = new RedBlackBST<String, Integer>();
+//        for (int i = 0; i<a.size(); i++) {
+//            st.put(a.get(i)[x],i);
+//        }
+//        return st;
+//    }
+    //this will create and return BST  given a row number for the ArrayList which can return the column number for a String
     public static RedBlackBST <String, Integer> getBSTRow (ArrayList<String[]> a, int x) {
         RedBlackBST<String, Integer> st = new RedBlackBST<String, Integer>();
+        int len = a.get(0).length;
         for (int i = 0; i<a.size(); i++) {
-            st.put(a.get(i)[x],i); }
+            if (a.get(i).length == len) {
+                st.put(a.get(i)[x],i);
+            }
+        }
         return st;
     }
 

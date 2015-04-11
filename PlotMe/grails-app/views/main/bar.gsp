@@ -50,8 +50,8 @@
 <%--</g:uploadForm>--%>
 
 <script src="${resource(dir: 'assets', file: 'jquery.min.js')}"></script>
-<script src="${resource(dir: 'assets', file: 'd3.js')}"></script>
-%{--<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>--}%
+
+<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
 
 <script>
 	var data = $('#abc').data();

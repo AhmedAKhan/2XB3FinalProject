@@ -20,10 +20,7 @@ class MainController {
 		[activeFile:activeFile]
 	}
 	
-	def titanic() {	
-		def json = p as JSON		
-		[myJSON:json]
-	}
+	def titanic() {}
 	
 	def histogram() {}
 	def pie_chart() {}
@@ -85,7 +82,7 @@ class MainController {
 				String temp = st.get(depArr[1]).toString();
 				
 				if (temp.equals("null")) {
-					render "<h1>Searched input could not be found in given independent ${rowORcolInverse}</h1>"
+					render "<h1>Searched input could not be found in given ${rowORcolInverse}</h1>"
 					return;
 				} else {
 					dep = Integer.parseInt(temp);
@@ -103,7 +100,6 @@ class MainController {
 					}
 				}
 			}
-
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
             if ("${analyze}".toString().equals("Analyze")) {
                 Analayzer analayzer = new Analayzer();
@@ -136,11 +132,13 @@ class MainController {
 		
 	public static void main(String[] args) {
 		String pathOfFile = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/market-share.csv";//pathString + "market-share.csv"
-		String[] depArr = "0,01/01/2005".toString().split(",");
+		String[] depArr = "1,US".toString().split(",");
+		
 		println "${depArr}"
 		ArrayList <String[]> myList = Parse.getArray (pathOfFile);
 		int dep = Integer.parseInt(depArr[0]);
-		RedBlackBST<String, Integer> st = Parse.getBST(myList, 0, "row");
+
+		RedBlackBST<String, Integer> st = Parse.getBST(myList, dep, "row");
 		System.out.println(st.get(depArr[1]));
 	}
 }
