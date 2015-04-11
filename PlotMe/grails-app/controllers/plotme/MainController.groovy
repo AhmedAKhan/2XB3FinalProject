@@ -65,29 +65,6 @@ class MainController {
 	
 	
 	def drawGraph() {
-        /*
-<<<<<<< HEAD
-        def graph = params.graphOptions
-
-        def indepCol = params.independent
-        def depCol = params.dependent
-
-        def sorted = params.sorted
-
-//		System.out.println("SORTED: ${sorted}")
-
-        if (UploadedFile.count > 0) {
-            UploadedFile abc = UploadedFile.get(UploadedFile.count)
-            String pathOfFile = "${abc.filePath}"
-
-            int indep = 0;
-
-            if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
-
-            int dep = Integer.parseInt("${depCol}")
-
-            ArrayList<String[]> myList = Parse.getArray(pathOfFile);
-=======*/
 		def graph = params.graphOptions
 		
 		def rowORcol = params.rowColOptions
@@ -149,16 +126,6 @@ class MainController {
 				}
 			}
 
-//>>>>>>> development
-
-//			ArrayList <String[]> myListSorted = Parse.getArray (pathOfFile);
-//
-//			for (String[] s : myListSorted) {
-//				Arrays.sort(s);
-////				System.out.println(Arrays.toString(s));
-//			}
-            
-			
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
 			
 			if ("${sorted}".toString().equals("on")) {
@@ -166,7 +133,7 @@ class MainController {
 //>>>>>>> development
 //				println "ON!"
             }
-//			else { 
+//			else {
 //				a = Parse.getPair(myList, indep, dep);
 //				println "OFF!"
 //			}

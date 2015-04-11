@@ -47,7 +47,7 @@ public class Analayzer {
      * @param graphInfo: the graph info will be the information of the graph given in an array of quartile information obejcts,
      * @return : the quartile information object of the weirdest graph
      */
-    public QuartileInformation getOddestGraph(QuartileInformation[] graphInfo) {
+    private QuartileInformation getOddestGraph(QuartileInformation[] graphInfo) {
         int currentHighestValue = Integer.MIN_VALUE;
         QuartileInformation oddestGraph = null;
 
@@ -88,7 +88,7 @@ public class Analayzer {
      *             return the range of the quartile
      * @return
      */
-    public double getQuartileRange(Double[] data) {
+    private double getQuartileRange(Double[] data) {
 
         //gets the quartile information
         double min = data[0];
