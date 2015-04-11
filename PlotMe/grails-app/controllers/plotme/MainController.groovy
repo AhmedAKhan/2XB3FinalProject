@@ -25,17 +25,9 @@ class MainController {
 		[myJSON:json]
 	}
 	
-	def histogram() {
-		
-	}
-	
-	def pie_chart() {
-		
-	}
-	
-	def pie_line() {
-		
-	}
+	def histogram() {}
+	def pie_chart() {}
+	def pie_line() {}
 	
 	def fileUpload() {
 		def uploadedFile = request.getFile('inputFile')
@@ -50,17 +42,11 @@ class MainController {
 		
 		def name = uploadedFile.originalFilename
 		
-//		pathToFile = "${resource(dir: 'files', file: name)}"
-		
 		pathString = "${webRootDir}".replaceAll("\\\\", "/")
 		
 		pathString += "files/${name}"
 		
-//		System.out.println(pathString)
-		
 		UploadedFile upFile = new UploadedFile(filePath: "${pathString}", fileName:"${name}").save()
-		
-//		[myFile:name]
 	}
 	
 	
@@ -77,37 +63,19 @@ class MainController {
 		
 		def analyze = params.analyze
 		
-//		if ("${analyze}".toString().equals("Analyze")) {
-//			redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
-//			return;
-//		}
-		
-//		println "Analyze: ${analyze}"
-//		println "Submit ${submit}"
-		
-//		System.out.println("SORTED: ${sorted}")
-		
 		if (UploadedFile.count > 0) {
 			UploadedFile abc = UploadedFile.get(UploadedFile.count)
 			String pathOfFile = "${abc.filePath}"
-			
 			int indep = 0;
-			
 			if (!("${indepCol}".toString().equals(""))) indep = Integer.parseInt("${indepCol}");
-			
-//			String[] depArr = "${depCol}".toString().split(",");
-			
 			int dep;
-			
 			ArrayList <String[]> myList = Parse.getArray (pathOfFile);
-			
 			String rowORcolInverse;
-			
-			if ("${rowORcol}".toString().equals("row")) rowORcolInverse = "column";
+
+            if ("${rowORcol}".toString().equals("row")) rowORcolInverse = "column";
 			else if ("${rowORcol}".toString().equals("col")) rowORcolInverse = "row";
-			
-			String[] depArr = "${depCol}".toString().split(",");
-			
+
+            String[] depArr = "${depCol}".toString().split(",");
 			if ("${search}".toString().equals("on")) {
 				// Get row (or column) by searching for an input string in the given column (or row)
 				dep = Integer.parseInt(depArr[0]);
@@ -138,10 +106,7 @@ class MainController {
 
 			Data a = Parse.getPair(myList, indep, dep, "${rowORcol}".toString());
             if ("${analyze}".toString().equals("Analyze")) {
-//                System.out.println("${analyze}");
-//                redirect(controller: "Main", action: "analyze", params: [indep: "${indepCol}"]);
                 Analayzer analayzer = new Analayzer();
-//                ArrayList<Point[]> p = Parse.getSetofPairs(myList, indep, dep, "${rowORcol}".toString());
                 a = analayzer.analyzeGraph(myList, indep, "${rowORcol}".toString());
             }
 
@@ -149,41 +114,18 @@ class MainController {
 				a = a.sort();//Parse.getPair(myListSorted, indep, dep);
             }
 
-
             json = a as JSON
-
-//			[objJSON:json]
-//			bar()
-//			redirect(controller: "Main", action: "bar", xyz:"post", params: [json: "${json}"])
 
             if ("${graph}".toString().equals("bar")) redirect(controller: "Main", action: "bar");
             else if ("${graph}".toString().equals("whiskers")) redirect(controller: "Main", action: "whiskers");
             else if ("${graph}".toString().equals("pie")) redirect(controller: "Main", action: "pie");
             else render "Error in redirecting part!"
-
-//			render (view:'bar.gsp')
-        } else {
-            render "Please upload a file"
-        }
-
-//		String[] arrDepCols = depCols.split(",")
-
+        } else render "Please upload a file"
     }
-	
-	def bar() {
-//		println "INSIDE BAR"
-		[objJSON:json]
-	}
-	
-	def whiskers() {
-//		println "INSIDE WHISKERS"
-		[objJSON:json]
-	}
-	
-	def pie() {
-//		println "INSIDE PIE"
-		[objJSON:json]
-	}
+
+	def bar() { [objJSON:json] }
+	def whiskers() { [objJSON:json] }
+	def pie() { [objJSON:json] }
 	
 	def analyze() {
 		def indep = params.indep
@@ -193,26 +135,12 @@ class MainController {
 	/********************************************************************************************************/
 		
 	public static void main(String[] args) {
-//		openInputFile(pathString)
-//		closeInputFile()
-			
 		String pathOfFile = "C:/Users/Saim/Documents/workspace-ggts-3.6.4.RELEASE/PlotMe/web-app/files/market-share.csv";//pathString + "market-share.csv"
-		
 		String[] depArr = "0,01/01/2005".toString().split(",");
-		
 		println "${depArr}"
-		
 		ArrayList <String[]> myList = Parse.getArray (pathOfFile);
-		
 		int dep = Integer.parseInt(depArr[0]);
-		
 		RedBlackBST<String, Integer> st = Parse.getBST(myList, 0, "row");
-//		dep = Integer.parseInt(st.get(depArr[1]));
-		
 		System.out.println(st.get(depArr[1]));
-		
-//		Data a = Parse.getPair(myList, 0, 47);
-//		
-//		System.out.println(a.toString());
 	}
 }
