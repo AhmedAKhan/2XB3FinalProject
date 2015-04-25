@@ -1,0 +1,46 @@
+things that are cool 
+
+	cool spining circles
+	- http://vyacheslavryabinin.com/datavis/absind/
+
+	pie chart
+		- this pie chart is interactive and has a couple of different graphs in it
+		- https://live.zoomdata.com/zoomdata/visualization?__target=embedded&key=52265abb6abdbcaa8c217789#51db7ad4e4b04caf9ab346db-51db7ad4e4b04caf9ab346d5
+
+	grant chart
+		- this is an interactive grant chart
+		- it lets you add tasks
+		- remove tasks, and see the graph at different time lines
+		- http://bl.ocks.org/dk8996/5538271
+
+	words
+		- gets the words in a website you give it and shows you the most used words respectively
+		- http://www.jasondavies.com/wordcloud/#https%3A%2F%2Fwiki.haskell.org%2FHaskell%0A
+
+	Collapsible indented tree
+		- it is a tree that can collapse and stuff
+		- http://bl.ocks.org/mbostock/1093025
+
+	Interactive histogram
+		- super interactive 
+		- https://github.com/gajus/interdependent-interactive-histograms
+
+	Zoomable american map
+		- http://bl.ocks.org/mbostock/2206590
+		- the json data for the map
+			- http://bl.ocks.org/mbostock/raw/4090846/us.json
+		- helper stuff
+			- http://stackoverflow.com/questions/15286733/json-file-for-canadas-province
+		- globe 
+			- http://mbostock.github.io/d3/talk/20111018/azimuthal.html
+
+	Sunburst stuff with another graph
+		-http://bl.ocks.org/wizicer/f662a0b04425fc0f7489
+
+	sunburst with labels
+		- http://bl.ocks.org/metmajer/5480307
+
+	the areas of unemployment in a heatmap type of way 
+	 - http://bl.ocks.org/mbostock/4060606
+
+		
